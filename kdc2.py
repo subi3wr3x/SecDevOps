@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+""" Create an MS Excel Chart for Chasing stragglers """
+""" Send it to your proj mgr / client mgrs          """
+
 import time
 import xlsxwriter                                                                
 import numpy as np                                                                
