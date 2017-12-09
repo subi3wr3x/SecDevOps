@@ -1,4 +1,7 @@
-#!usr/bin/python5
+#!usr/bin/python3
+
+""" Given a MIT Kerberos Infratstructure that is shut down and migrated """
+""" we analyze the logs files to see whos is still hit the old boxes.   """
 
 import os                                                        
 import re                                                        
@@ -45,7 +48,7 @@ for kdclog in glob.glob("kdc-*"):
             seen[IP]=hn                                                                                                                                                                                                
         else:                                                                                                                                                                                                        
             hn=seen[IP]                                                                                                                                                                                                        
-    print (IP,': Yes')                                                                                                                                                                                                                
+    #print (IP,': Yes')                                                                                                                                                                                                                
     for x,y in seen.items():                                                                                                                                                                                                                        
         print (x,y)                                                                                                                                                                                                                                
     string=time + sep + kdc + sep + IP  + sep + hn + sep + proid + sep + sprnc + "\n"                                                                                                                                                                                                                                        
