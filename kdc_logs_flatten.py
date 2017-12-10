@@ -3,6 +3,15 @@
 """ Given a MIT Kerberos Infratstructure that is shut down and migrated """
 """ we analyze the logs files to see whos is still hit the old boxes.   """
 
+"""
+Feb 26 17:02:01 krb5.example.com krb5kdc[26922](info): AS_REQ (7 etypes {23 -133 -128 3 1 24 -135}) 192.168.1.3: \
+ISSUE: authtime 1235664121, etypes {rep=23 tkt=16 ses=23}, kprutser@EXAMPLE.COM for krbtgt/EXAMPLE.COM@EXAMPLE.COM
+
+becomes this:
+
+|Feb 26 17:02:01|krb5.example.com|192.168.1.3|hostname_of_192.168.1.3|kprutser@EXAMPLE.COM|krbtgt/EXAMPLE.COM@EXAMPLE.COM|
+"""
+
 import os                                                        
 import re                                                        
 import sys                                                        
@@ -10,9 +19,7 @@ import glob,os
 import random                                                        
 import socket                                                        
 import itertools                                                        
-import numpy as np                                                        
-import pandas as pd                                                        
-import requests                                                        
+                                                     
 
 sep='|'                                                                                
 data_pat = re.compile("(2017-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9]).*?([a-z][a-z]ikdc0[0-9]).*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):.*?([a-zA-Z0-9_\.\/\-]{2,50}@[a-zA-Z0-9\.]{2,20})\s+for\s+([a-zA-Z0-9_\.\/\-]{2,50}@is1.morgan)")                                                        
@@ -37,10 +44,11 @@ for kdclog in glob.glob("kdc-*"):
     for line in file:                                                                                                                                
         data_is_valid  = data_pat.search(line)                                                                                                                                
         if data_is_valid:                                                                                                                                        
-            time    = data_is_valid.group(1)                                                                                                                                        
+            time    = data_is_valid.group(1) 
+            #Modify your KDC name pattern as needed
             kdc     = data_is_valid.group(2)                                                                                                                                                
             IP      = data_is_valid.group(3)                                                                                                                                                        
-            proid   = data_is_valid.group(4)                                                                                                                                                                
+            cprinc  = data_is_valid.group(4)                                                                                                                                                                
             sprnc   = data_is_valid.group(5)                                                                                                                                                                        
         if IP not in seen:                                                                                                                                                                                
             print (IP,': No')                                                                                                                                                                                
@@ -51,7 +59,7 @@ for kdclog in glob.glob("kdc-*"):
     #print (IP,': Yes')                                                                                                                                                                                                                
     for x,y in seen.items():                                                                                                                                                                                                                        
         print (x,y)                                                                                                                                                                                                                                
-    string=time + sep + kdc + sep + IP  + sep + hn + sep + proid + sep + sprnc + "\n"                                                                                                                                                                                                                                        
+    string=time + sep + kdc + sep + IP  + sep + hn + sep + cprinc + sep + sprnc + "\n"                                                                                                                                                                                                                                        
     with open(kdc_csv,'a') as mfyi:                                                                                                                                                                                                                                        
         mfyi.write(string)                                                                                                                                                                                                                                        
         count+=1                                                                                                                                                                                                                                        
