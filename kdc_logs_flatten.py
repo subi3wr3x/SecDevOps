@@ -4,12 +4,16 @@
 """ we analyze the logs files to see whos is still hit the old boxes.   """
 
 """
+This:
+
 Feb 26 17:02:01 krb5.example.com krb5kdc[26922](info): AS_REQ (7 etypes {23 -133 -128 3 1 24 -135}) 192.168.1.3: \
 ISSUE: authtime 1235664121, etypes {rep=23 tkt=16 ses=23}, kprutser@EXAMPLE.COM for krbtgt/EXAMPLE.COM@EXAMPLE.COM
 
 becomes this:
 
 |Feb 26 17:02:01|krb5.example.com|192.168.1.3|hostname_of_192.168.1.3|kprutser@EXAMPLE.COM|krbtgt/EXAMPLE.COM@EXAMPLE.COM|
+
+for easy shuffling into Pandas 
 """
 
 import os                                                        
