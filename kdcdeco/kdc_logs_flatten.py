@@ -1,7 +1,7 @@
 #!usr/bin/python3
 
-""" Given a MIT Kerberos Infratstructure that is shut down and migrated """
-""" we analyze the logs files to see whos is still hit the old boxes.   """
+""" Given a MIT Kerberos Infratstructure that is shut down and migrated    """
+""" we analyze the logs files to see who is still hitting the old boxes.   """
 
 """
 This:
