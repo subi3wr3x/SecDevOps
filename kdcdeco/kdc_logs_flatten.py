@@ -46,7 +46,7 @@ seen={}
 #Modify your file name pattern as needed
 for kdclog in glob.glob("kdc-*"):                                                                                                                
     with open(kdclog) as file:                                                                                                                        
-    count=0                                                                                                                                
+    ###count=0                                                                                                                                
     for line in file:                                                                                                                                
         data_is_valid  = data_pat.search(line)                                                                                                                                
         if data_is_valid:                                                                                                                                        
@@ -61,11 +61,8 @@ for kdclog in glob.glob("kdc-*"):
             seen[IP]=hn                                                                                                                                                                                                
         else:                                                                                                                                                                                                        
             hn=seen[IP]                                                                                                                                                                                                        
-    #print (IP,': Yes')                                                                                                                                                                                                                
-    for x,y in seen.items():                                                                                                                                                                                                                        
-        print (x,y)                                                                                                                                                                                                                                
     string=time + sep + kdc + sep + IP  + sep + hn + sep + cprinc + sep + sprnc + "\n"                                                                                                                                                                                                                                        
     with open(kdc_csv,'a') as mfyi:                                                                                                                                                                                                                                        
         mfyi.write(string)                                                                                                                                                                                                                                        
-        count+=1                                                                                                                                                                                                                                        
-        print(count)                                                                                                                                                                                                                                        
+        ###count+=1                                                                                                                                                                                                                                        
+        ###print(count)                                                                                                                                                                                                                                        
