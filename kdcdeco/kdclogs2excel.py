@@ -2,8 +2,6 @@
 
 """ Create an MS Excel Chart for Chasing stragglers            """
 """ Send it to your proj mgr / client mgrs                     """
-""" A la https://stackoverflow.com/questions/47722603/pandas\  """ 
-""" -to-csv-not-save-index-values-repeatedly/47722671#47722671 """
 
 import time
 import xlsxwriter                                                                
