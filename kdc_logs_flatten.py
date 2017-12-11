@@ -26,7 +26,8 @@ import itertools
                                                      
 
 sep='|'                                                                                
-data_pat = re.compile("(2017-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9]).*?([a-z][a-z]ikdc0[0-9]).*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):.*?([a-zA-Z0-9_\.\/\-]{2,50}@[a-zA-Z0-9\.]{2,20})\s+for\s+([a-zA-Z0-9_\.\/\-]{2,50}@is1.morgan)")                                                        
+#Modify your KDC name pattern and 'REALM' as needed:
+data_pat = re.compile("(2017-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9]).*?([a-z][a-z]ikdc0[0-9]).*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):.*?([a-zA-Z0-9_\.\/\-]{2,50}@[a-zA-Z0-9\.]{2,20})\s+for\s+([a-zA-Z0-9_\.\/\-]{2,50}@REALM)")                                                        
 kdc_csv="/tmp/kdc_all.txt"                                                                
 
 open(kdc_csv,'w').close                                                                
@@ -41,7 +42,8 @@ def lookup(x):
         hn = 'nohost'                                                                                                        
     return hn                                                                                                        
 
-seen={}                                                                                                        
+seen={}     
+#Modify your file name pattern as needed
 for kdclog in glob.glob("kdc-*"):                                                                                                                
     with open(kdclog) as file:                                                                                                                        
     count=0                                                                                                                                
@@ -49,7 +51,6 @@ for kdclog in glob.glob("kdc-*"):
         data_is_valid  = data_pat.search(line)                                                                                                                                
         if data_is_valid:                                                                                                                                        
             time    = data_is_valid.group(1) 
-            #Modify your KDC name pattern as needed
             kdc     = data_is_valid.group(2)                                                                                                                                                
             IP      = data_is_valid.group(3)                                                                                                                                                        
             cprinc  = data_is_valid.group(4)                                                                                                                                                                
