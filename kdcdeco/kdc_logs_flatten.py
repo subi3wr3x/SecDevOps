@@ -1,4 +1,4 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 
 """ Given a MIT Kerberos Infratstructure that is shut down and migrated    """
 """ we analyze the logs files to see who is still hitting the old boxes.   """
@@ -19,10 +19,9 @@ for easy shuffling into Pandas
 import os                                                        
 import re                                                        
 import sys                                                        
-import glob,os                                                        
-import random                                                        
+import glob                                                        
 import socket                                                        
-import itertools                                                        
+                                                    
                                                      
 
 sep='|'                                                                                
