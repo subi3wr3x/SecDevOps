@@ -26,7 +26,9 @@ import socket
 
 sep='|'                                                                                
 #Modify your KDC name pattern and 'REALM' as needed:
-data_pat = re.compile("(2017-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9]).*?([a-z][a-z]ikdc0[0-9]).*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):.*?([a-zA-Z0-9_\.\/\-]{2,50}@[a-zA-Z0-9\.]{2,20})\s+for\s+([a-zA-Z0-9_\.\/\-]{2,50}@REALM)")                                                        
+data_pat = re.compile("(2017-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9]).*\
+?([a-z][a-z]ikdc0[0-9]).*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):.*?([a-zA-Z0-9_\.\/\-]\
+{2,50}@[a-zA-Z0-9\.]{2,20})\s+for\s+([a-zA-Z0-9_\.\/\-]{2,50}@REALM)")                                                        
 kdc_csv="/tmp/kdc_all.txt"                                                                
 
 open(kdc_csv,'w').close                                                                
@@ -45,9 +47,8 @@ seen={}
 #Modify your file name pattern as needed
 for kdclog in glob.glob("kdc-*"):                                                                                                                
     with open(kdclog) as file:                                                                                                                        
-    ###count=0                                                                                                                                
-    for line in file:                                                                                                                                
-        data_is_valid  = data_pat.search(line)                                                                                                                                
+        for line in file:                                                                                                                                
+            data_is_valid  = data_pat.search(line)                                                                                                                                
         if data_is_valid:                                                                                                                                        
             time    = data_is_valid.group(1) 
             kdc     = data_is_valid.group(2)                                                                                                                                                
@@ -63,5 +64,4 @@ for kdclog in glob.glob("kdc-*"):
     string=time + sep + kdc + sep + IP  + sep + hn + sep + cprinc + sep + sprnc + "\n"                                                                                                                                                                                                                                        
     with open(kdc_csv,'a') as mfyi:                                                                                                                                                                                                                                        
         mfyi.write(string)                                                                                                                                                                                                                                        
-        ###count+=1                                                                                                                                                                                                                                        
-        ###print(count)                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                       
