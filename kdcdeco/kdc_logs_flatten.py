@@ -61,10 +61,6 @@ if glob.glob(kdc_log_file_glob):
         for line in open(kdclog):                                                                                                                                
             data_is_valid  = data_pat.search(line)                                                                                                                                
             if data_is_valid:      
-                print ("OK:" + line)           
-                print ("0 " + data_is_valid.group(0))  
-                print ("obj",data_is_valid)
-                print ("groups",data_is_valid.groups())                                                                                                  
                 try:
                     time    = data_is_valid.group(1) 
                     kdc     = data_is_valid.group(2)                                                                                                                                                
