@@ -34,7 +34,7 @@ clprinc_pat="[a-zA-Z0-9_\.\/\-]{2,99}@" + realm
 sprinc_pat="[a-zA-Z0-9_\.\/\-]{2,99}@" + realm
 kdc_log_file_glob="mit_kdc_log*"                                                                
 kdc_csv="/tmp/kdc_all.txt"
-data_pat = re.compile( (time_pat) 
+data_pat = re.compile( (time_pat)                        \
                        + "\s+"                           \
                        + (kdc_pat)                       \
                        + "\s+krb5kdc\[[0-9]{1,10}\].*?"  \
