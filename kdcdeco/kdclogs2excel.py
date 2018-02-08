@@ -16,4 +16,4 @@ df = pd.read_csv(log_dir + log_file,sep='|',names=['Time','KDC','IP','Host','Cln
 df = df[df['ClntPrinc'].str.contains('crazy')==False]                                                                            
 df = df[df['Host'].str.contains('kdc')==False]                                                                                
 df.set_index('Host',inplace=True)                                                                                        
-df.groupby(['Host', 'ClntPrinc', 'SrvPrinc']).SrvPrinc.agg('count').to_excel('/tmp/kdc_no_spot_agg_' + timestr + '.xlsx','kdc-deco',engine='xlsxwriter')                                                                                            
+df.groupby(['Host', 'ClntPrinc', 'SrvPrinc']).SrvPrinc.agg('count').to_excel('/tmp/kdc_agg_' + timestr + '.xlsx','kdc-deco',engine='xlsxwriter')                                                                                            
