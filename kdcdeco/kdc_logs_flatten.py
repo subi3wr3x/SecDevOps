@@ -37,8 +37,6 @@ kdc_csv= wdir + "kdc_all.txt"
 output_csv = wdir + 'kdc_all.txt'
 dns_hosts = wdir + 'all_hosts_dns_map.txt'
 
-
-
 data_pat = re.compile( time_pat                          \
                        + "\s+"                           \
                        + kdc_pat                         \
@@ -48,7 +46,7 @@ data_pat = re.compile( time_pat                          \
                        + clprinc_pat                     \
                        + "\s+for\s+"                     \
                        + sprinc_pat)
-                
+               
 def lookup(x):                                                                                
     try:                                                                                        
         hn = socket.gethostbyaddr(x)[0]                                                                                        
