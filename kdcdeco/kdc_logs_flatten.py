@@ -25,24 +25,23 @@ import glob
 import socket                                                        
 
 sep='|'
-year="2018"
-time_pat=(year + "-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.*?")
+time_pat= "(2018-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.*?)"
 realm="example.com"
-kdc_pat="[a-z0-9]{1,99}." + realm
-IP_pat="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"
-clprinc_pat="[a-zA-Z0-9_\.\/\-]{2,99}@" + realm
-sprinc_pat="[a-zA-Z0-9_\.\/\-]{2,99}@" + realm
+kdc_pat="([a-z0-9]{1,99}.example.com)"
+IP_pat="(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
+clprinc_pat="([a-zA-Z0-9_\.\/\-]{2,99}@example.com)"
+sprinc_pat= "([a-zA-Z0-9_\.\/\-]{2,99}@example.com)"
 kdc_log_file_glob="mit_kdc_log*"                                                                
 kdc_csv="/tmp/kdc_all.txt"
-data_pat = re.compile( (time_pat)                        \
+data_pat = re.compile( time_pat                          \
                        + "\s+"                           \
-                       + (kdc_pat)                       \
+                       + kdc_pat                         \
                        + "\s+krb5kdc\[[0-9]{1,10}\].*?"  \
-                       + (IP_pat)                        \
+                       + IP_pat                          \
                        + ":.*?"                          \
-                       + (clprinc_pat)                   \
+                       + clprinc_pat                     \
                        + "\s+for\s+"                     \
-                       + (sprinc_pat) )
+                       + sprinc_pat)
                 
 def lookup(x):                                                                                
     try:                                                                                        
@@ -71,12 +70,12 @@ if glob.glob(kdc_log_file_glob):
                     print("Bailing: no sub matches:",e)
                     sys.exit()                                                                                                                                                                        
                 if IP not in seen:                                                                                                                                                                                
-                        print (IP,': No')                                                                                                                                                                                
+                        print (IP,': Not yet seen')                                                                                                                                                                                
                         hn = lookup(IP)                                                                                                                                                                                        
                         seen[IP] = hn                                                                                                                                                                                                
                 else:                                                                                                                                                                                                        
                     hn = seen[IP]                                                                                                                                                                                                        
-                    string = time  \
+                string = time  \
                           + sep    \
                           + kdc    \
                           + sep    \
@@ -88,10 +87,10 @@ if glob.glob(kdc_log_file_glob):
                           + sep    \
                           + sprnc  \
                           + "\n"                                                                                                                                                                                                                                        
-                    with open(kdc_csv,'a') as myfile:                                                                                                                                                                                                                                        
+                with open(kdc_csv,'a') as myfile:                                                                                                                                                                                                                                        
                         myfile.write(string)
             else:
-                    print('No matches')                                                                                                                                                                                                                                        
+               print('Warning: No matches found in ' + kdclog)                                                                                                                                                                                                                                        
 else:
     print("No files found matching " + kdc_log_file_glob)
     
