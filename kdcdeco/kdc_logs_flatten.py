@@ -22,17 +22,23 @@ import os
 import re                                                        
 import sys
 import glob                                                        
+import json
 import socket                                                        
 
 sep='|'
 time_pat= "(2018-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.*?)"
-realm="example.com"
 kdc_pat="([a-z0-9]{1,99}.example.com)"
 IP_pat="(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
 clprinc_pat="([a-zA-Z0-9_\.\/\-]{2,99}@example.com)"
 sprinc_pat= "([a-zA-Z0-9_\.\/\-]{2,99}@example.com)"
 kdc_log_file_glob="mit_kdc_log*"                                                                
-kdc_csv="/tmp/kdc_all.txt"
+wdir = "/tmp/"
+kdc_csv= wdir + "kdc_all.txt"
+output_csv = wdir + 'kdc_all.txt'
+dns_hosts = wdir + 'all_hosts_dns_map.txt'
+
+
+
 data_pat = re.compile( time_pat                          \
                        + "\s+"                           \
                        + kdc_pat                         \
@@ -51,46 +57,61 @@ def lookup(x):
         hn = 'nohost'                                                                                                        
     return hn                                                                                                        
 
-os.chdir(".")                                                                        
-seen={}     
+os.chdir(".")      
 if glob.glob(kdc_log_file_glob):
+    
+    #Create the local DNS cache file once for all kdc logs
+    if os.path.exists(dns_hosts) and  os.path.getsize(dns_hosts) > 0:
+        with open(dns_hosts, 'r') as fp:
+            resolved_hosts = json.load(fp)
+    else:
+        print('Not loading',dns_hosts)
+        resolved_hosts={}
+    
     #Zero out the destination if the source log files exist - everytime
     open(kdc_csv,'w').close                                                                                              
     for kdclog in glob.glob(kdc_log_file_glob):             
-        for line in open(kdclog):                                                                                                                                
-            data_is_valid  = data_pat.search(line)                                                                                                                                
-            if data_is_valid:      
-                try:
-                    time    = data_is_valid.group(1) 
-                    kdc     = data_is_valid.group(2)                                                                                                                                                
-                    IP      = data_is_valid.group(3)                                                                                                                                                        
-                    cprinc  = data_is_valid.group(4)                                                                                                                                                                
-                    sprnc   = data_is_valid.group(5)
-                except IndexError as e:
-                    print("Bailing: no sub matches:",e)
-                    sys.exit()                                                                                                                                                                        
-                if IP not in seen:                                                                                                                                                                                
-                        print (IP,': Not yet seen')                                                                                                                                                                                
-                        hn = lookup(IP)                                                                                                                                                                                        
-                        seen[IP] = hn                                                                                                                                                                                                
-                else:                                                                                                                                                                                                        
-                    hn = seen[IP]                                                                                                                                                                                                        
-                string = time  \
-                          + sep    \
-                          + kdc    \
-                          + sep    \
-                          + IP     \
-                          + sep    \
-                          + hn     \
-                          + sep    \
-                          + cprinc \
-                          + sep    \
-                          + sprnc  \
-                          + "\n"                                                                                                                                                                                                                                        
-                with open(kdc_csv,'a') as myfile:                                                                                                                                                                                                                                        
-                        myfile.write(string)
-            else:
-               print('Warning: No matches found in ' + kdclog)                                                                                                                                                                                                                                        
+            for line in open(kdclog):                                                                                                                                
+                data_is_valid  = data_pat.search(line)                                                                                                                                
+                if data_is_valid:      
+                    try:
+                        time    = data_is_valid.group(1) 
+                        kdc     = data_is_valid.group(2)                                                                                                                                                
+                        IP      = data_is_valid.group(3)                                                                                                                                                        
+                        cprinc  = data_is_valid.group(4)                                                                                                                                                                
+                        sprnc   = data_is_valid.group(5)
+                    except IndexError as e:
+                        print("Bailing: invalid sub matches:",e)
+                        sys.exit()                                                                                                                                                                        
+                    
+                    if IP not in resolved_hosts:         #Lookup the hostname                                                                                                                                                                                 
+                            print (IP,': Not yet seen')                                                                                                                                                                                
+                            hn = lookup(IP)                                                                                                                                                                                        
+                            resolved_hosts[IP] = hn                                                                                                                                                                                                
+                    else:                                #We know the hostname                                                                                                                                                                     
+                        hn = resolved_hosts[IP]                                                                                                                                                                                                        
+                    
+                    string = time  \
+                              + sep    \
+                              + kdc    \
+                              + sep    \
+                              + IP     \
+                              + sep    \
+                              + hn     \
+                              + sep    \
+                              + cprinc \
+                              + sep    \
+                              + sprnc  \
+                              + "\n"                                                                                                                                                                                                                                        
+                    with open(kdc_csv,'a') as myfile:                                                                                                                                                                                                                                        
+                            myfile.write(string)
+    
+                else:
+                    print('Warning: No matches found in ' + kdclog)
+    
+    with open(dns_hosts, 'w') as outfile:
+        json.dump(resolved_hosts, outfile)
+                                                                                                                                                                                                                                                 
 else:
     print("No files found matching " + kdc_log_file_glob)
     
