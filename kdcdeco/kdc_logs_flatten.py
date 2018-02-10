@@ -75,6 +75,7 @@ if glob.glob(kdc_log_file_glob):
             data_is_valid  = data_pat.search(line)                                                                                                                                
     
             if data_is_valid:      
+				
                 time    = data_is_valid.group(1)
                 kdc     = data_is_valid.group(2)
                 IP      = data_is_valid.group(3) 
