@@ -46,7 +46,7 @@ data_pat = re.compile(  "(" + time_pat + ")"             \
                        + "(" + clprinc_pat + ")"         \
                        + "\s+for\s+"                     \
                        + "(" + sprinc_pat  + ")"
-		            ) 
+                     ) 
                
 print(data_pat)
 
