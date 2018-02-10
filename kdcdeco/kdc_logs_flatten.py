@@ -25,27 +25,31 @@ import json
 import socket                                                        
 
 sep='|'
-time_pat= "(2018-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.*?)"
-kdc_pat="([a-z0-9]{1,99}.example.com)"
-IP_pat="(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
-clprinc_pat="([a-zA-Z0-9_\.\/\-]{2,99}@example.com)"
-sprinc_pat= "([a-zA-Z0-9_\.\/\-]{2,99}@example.com)"
+realm = 'example.com'
+time_pat= "2018-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.*?"
+kdc_pat = "[a-z0-9]{1,99}\." + realm
+IP_pat="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"
+clprinc_pat="[a-zA-Z0-9_\.\/\-]{2,99}@" + realm
+sprinc_pat ="[a-zA-Z0-9_\.\/\-]{2,99}@" + realm
 kdc_log_file_glob="mit_kdc_log*"                                                                
 wdir = "/tmp/"
 kdc_csv= wdir + "kdc_all.txt"
 output_csv = wdir + 'kdc_all.txt'
 dns_hosts = wdir + 'all_hosts_dns_map.txt'
 
-data_pat = re.compile( time_pat                          \
+data_pat = re.compile(  "(" + time_pat + ")"             \
                        + "\s+"                           \
-                       + kdc_pat                         \
+                       + "(" + kdc_pat + ")"             \
                        + "\s+krb5kdc\[[0-9]{1,10}\].*?"  \
-                       + IP_pat                          \
+                       + "(" + IP_pat  + ")"             \
                        + ":.*?"                          \
-                       + clprinc_pat                     \
+                       + "(" + clprinc_pat + ")"         \
                        + "\s+for\s+"                     \
-                       + sprinc_pat)
+                       + "(" + sprinc_pat  + ")"
+		            ) 
                
+print(data_pat)
+
 def lookup(x):                                                                                
     try:                                                                                        
         hn = socket.gethostbyaddr(x)[0]                                                                                        
@@ -83,7 +87,7 @@ if glob.glob(kdc_log_file_glob):
                 sprnc   = data_is_valid.group(5)
                                                                                                                                                                                                     
                 if IP not in resolved_hosts:         #Lookup the hostname                                                                                                                                                                                 
-                        print (IP,': Not yet seen')                                                                                                                                                                                
+                        print ('Info:',IP,': Not yet seen')                                                                                                                                                                                
                         hn = lookup(IP)                                                                                                                                                                                        
                         resolved_hosts[IP] = hn                                                                                                                                                                                                
                 else:                                #We know the hostname                                                                                                                                                                     
