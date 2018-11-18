@@ -8,13 +8,14 @@ if len(sys.argv) < 2:
     sys.exit
 else:
     myfile=sys.argv[1]
-    myfileout=sys.argv[1] + ".uu"
+    myfileout=sys.argv[1] + ".uue"
 
 def main():
     try:
         with open(myfile) as fh:
             with open(myfileout,'w') as fh2:
                 all_lines=fh.readlines()
+                all_lines.insert(0,'begin 664 test.text.tar\n')  #Add back a unix line
                 for line in all_lines:
                     line=line\
                     .replace('HELLO000','`').replace('HELLO001','~').replace('HELLO002','!')\
@@ -27,8 +28,11 @@ def main():
                     .replace('HELLO021','\\').replace('HELLO022',':').replace('HELLO023',';')\
                     .replace("HELLO024","'").replace('HELLO025','<').replace('HELLO026',',')\
                     .replace('HELLO027','>').replace('HELLO028','.').replace('HELLO029','?')\
-                    .replace('HELLO030','/').replace('HELLO31','"')
+                    .replace('HELLO030','/').replace('HELLO31','"').replace('HELLOKITTY','M')
                     fh2.write(line)
+        with open(myfileout,'a') as fh3:
+                fh3.write('`\n')    #Add back '`'
+                fh3.write('end\n')   #Add back the 'end' line
     except Exception as e:
         print("Error:",e)
 
