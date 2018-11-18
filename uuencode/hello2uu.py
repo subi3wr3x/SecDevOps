@@ -1,4 +1,4 @@
-#!/home/john/anaconda3/bin/python3
+#!/usr/bin/python3
 
 """ Given a  file encoded with uu2hello.py, reverse it """
 
