@@ -8,9 +8,6 @@ else:
     myfile=sys.argv[1]
     myfileout=sys.argv[1] + ".hello"
 
-#TBD: Change always changing the first char from M to HK to subbing M to HK
-#there could be a '%' somewhere...
-
 try:
     with open(myfile) as fh:
             all_lines=fh.readlines()
