@@ -1,4 +1,6 @@
-#!/home/john/anaconda3/bin/python3
+#!/usr/bin/python3
+
+""" Take a uuencoded file and replace the special characters with HELLO(N) """
 
 import sys
 if len(sys.argv) < 2:
