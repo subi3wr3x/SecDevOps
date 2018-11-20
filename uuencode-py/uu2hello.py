@@ -16,7 +16,7 @@ try:
             all_lines = all_lines[1:]  # Remove Inital Unix line
             with open(myfileout,'w') as fh2:
                 for line in all_lines:
-                    if line.startswith('M'):
+                    if line.startswith('M'):           #M will not start the line %100 of the time, but close
                         line = "HELLOKITTY" + line[1:] #Change to suit your needs
                     line=line\
                     .replace('`','HELLO000').replace('~','HELLO001').replace('!','HELLO002')\
