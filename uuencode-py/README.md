@@ -15,8 +15,10 @@ Send it somewhere...
 #### Examples
 Take a.uue file, convert it and then convert back using the included 'test_uu.sh'
 
+```
 $ ./test_uu.sh  test.text.tar.uue
 d42390e88b8faeaa2e1732c57dc71ea8c5f240663ff43132999006148ebba048  test.text.tar.uue
 d42390e88b8faeaa2e1732c57dc71ea8c5f240663ff43132999006148ebba048  test.text.tar.uue.hello.uue
+```
 
 
