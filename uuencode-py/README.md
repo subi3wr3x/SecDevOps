@@ -1,1 +1,14 @@
 #### Given a file encoded by uuencode it can be useful to quickly encode and decode it again using a mapping of your choosing (pentest,etc).
+
+####Usage
+```
+./uu2hello.py
+
+####Examples
+Take a.uue file, convert it and then convert back
+
+$ ./test_uu.sh  test.text.tar.uue
+d42390e88b8faeaa2e1732c57dc71ea8c5f240663ff43132999006148ebba048  test.text.tar.uue
+d42390e88b8faeaa2e1732c57dc71ea8c5f240663ff43132999006148ebba048  test.text.tar.uue.hello.uue
+
+
