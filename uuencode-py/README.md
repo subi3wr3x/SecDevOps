@@ -13,7 +13,7 @@ Send it somewhere...
 ```
 
 #### Examples
-Take a.uue file, convert it and then convert back using the included 'test_uu.sh'
+Take a.uue file, convert it and then convert back using the included 'test_uu.sh' (sha256sums are shown)
 
 ```
 $ ./test_uu.sh  test.text.tar.uue
