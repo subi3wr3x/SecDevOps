@@ -18,7 +18,7 @@ Take a .uue file, convert it and then convert back using the included 'test_uu.s
 ```
 $cp /etc/passwd . 
 $uuencode passwd pw > passwd.uue
-john@wild:~/gitrepos/SysAdmin/uuencode-py$ ./test_uu.sh passwd.uue
+./test_uu.sh passwd.uue
 79ad1ac23a62220c59c4958a65ee9790cb744658d48132132f544f57b851543c  passwd.uue
 fd0e713b20b8807a1df853863f2683e365262ee4bd849b695d501abced79c8da  passwd.uue.hello.uue
 1c1
