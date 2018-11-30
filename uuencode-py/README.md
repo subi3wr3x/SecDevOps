@@ -1,6 +1,7 @@
-#### Given a file encoded by uuencode it can be useful to quickly encode and decode it again using a mapping of your choosing (pentest,etc).
+#### uuencode-py
+Given a file encoded by uuencode it can be useful to quickly encode and decode it again using a mapping of your choosing (pentest,etc).
 
-####Usage
+#### Usage
 ```
 ./uu2hello.py UUENCODED_FILE.UUE (creates UUENCODED_FILE.UUE.hello
 ```
@@ -11,7 +12,7 @@ Send it somewhere...
 ./hello2uu.py UUENCODED_FILE.UUE.hello (creates UUENCODED_FILE.UUE)
 ```
 
-####Examples
+#### Examples
 Take a.uue file, convert it and then convert back using the included 'test_uul.sh'
 
 $ ./test_uu.sh  test.text.tar.uue
