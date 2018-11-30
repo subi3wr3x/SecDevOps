@@ -1,5 +1,5 @@
 #### uuencode-py
-Given a file encoded by uuencode it can be useful to quickly encode and decode it again using a mapping of your choosing (pentest,etc).
+Encode and decode uuencoded file using a mapping of your choosing (pentest,etc).
 
 #### Usage
 ```
