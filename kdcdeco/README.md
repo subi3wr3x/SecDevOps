@@ -11,4 +11,5 @@ Splunk was giving us dirty/broken data. I could wait no longer to deco this infr
 ./kdc_logs_flatten.py #creates "/tmp/kdc_all.txt"
 ./kdclogs2excel.py    #creates "/tmp/kdc_agg_ + TIME_STAMP + .xlsx"
 ```
-
+## Sample Spreadsheet
+![Sample Spreadsheet](kdc_deco.png?raw=true "Sample Spreadsheet")
