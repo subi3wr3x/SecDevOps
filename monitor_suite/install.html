@@ -1,0 +1,199 @@
+<html>
+<head>
+<title>Monitor Suite Installation Guide </title>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+
+</head>
+
+<body>
+
+<div id="page">
+<div id="header">
+<div id="headerimg">
+
+<ul id="themenu">
+
+<li>
+<a class="active" href="http://www.monitorsuite.net/">Home</a>
+</li>
+
+<!--<li class="page_item page-item-2">
+<a href="http://www.monitorsuite.net/about/" title="About">About</a>
+</li>
+-->
+
+</ul>
+
+
+
+        <!--Big word -->
+        <h1><a href="http://www.monitorsuite.net/">monitorsuite.net</a></h1>
+        <div class="description"></div>
+
+        <form action="http://monitorsuite.net/results.php" id="cse-search-box">
+	    <input type="hidden" name="cx" value="011576639364420310068:deahjtrh4wg" />
+	    <input type="hidden" name="cof" value="FORID:11;NB:1" />
+	    <input type="hidden" name="ie" value="UTF-8" />
+	    <input type="text" name="q" size="12" />
+	    <input type="image" src="images/btn_search.jpg" id="searchsubmit" value="Search" class="but2" />
+	</form>
+
+
+
+        </div>
+</div>
+
+
+
+        <div id="content" class="narrowcolumn">
+
+
+
+                        <div class="post" id="post-1">
+                                <div class="header">
+                                <h2>
+                                <!--<a href="http://www.monitorsuite.net/" rel="bookmark" title="Text">Text</a>-->
+                                </h2>
+                                <span class="date">
+                                  Thursday, July 10, 2008                                </span>
+
+                                        <!--<span class="comments"><a href="http://www.monitorsuite.net/" title="Notes">Notes </a></span>-->
+                                </div>
+
+                                <div class="entry">
+
+<H1> Monitor Suite Installation Guide </H1>
+<BR>
+
+<P> System  Requirements:
+<P> Install <A HREF="http://www.gnu.org/software/wget/wget.html" target="_blank">wget</A>.
+<P> Install <A HREF="http://search.cpan.org/~gbarr/libnet-1.19/Net/SMTP.pm"/ target="_blank">NET::SMTP </A> Perl module.
+<P> Install <A HREF="http://search.cpan.org/~jrogers/Net-Telnet-3.03/lib/Net/Telnet.pm" target="_blank">NET::telnet </A> Perl module.
+
+<P>
+<BR>
+<P>
+
+The following steps are performed as the root user
+<P>
+<BR>
+
+<OL>
+<LI>Create a local user named monitorsuite. 
+<P>adduser monitorsuite
+<P>
+<BR>
+
+<LI>Extract Files.
+<P>cd /tmp
+<P>tar zxvf monitor_suite.tgz
+<P>
+<BR>
+
+
+<LI> Install Monitor Suite using install.sh
+<P>Note1: the syntax is: ./install.sh path_to_install_scripts web_document_root 
+<P>Note2: Do not enter a trailing slash for  path_to_install_scripts or web_document_root!!
+<P>
+<BR>
+<P>
+<P>./install.sh  /usr/local/admin/bin /var/www  
+<P>
+<BR>
+<P>
+
+
+<LI> Edit the main  config file, /etc/monitorsuite/monitor_suite.conf
+
+<P> Set WEBSRV to the Fully Qualified Domain Name of the Web Server that will run monitor_suite.
+<P> Set at least one SMTP variable (i.e SMTP1,2,3) to the SMTP server to send alerts through.
+<P> Set RECIPIENT and CC (optional) to addresses receiving alerts.
+<P>
+<BR>
+
+<LI>Add Services you wish to monitor 
+<P>Edit web_document_root/webmon/conf/urls.txt to add HTTP URLS to monitor
+<P>Edit web_document_root/dnsmon/conf/dnsservers.txt to add DNS Servers URLS to monitor
+<P>Edit web_document_root/smtpmon/conf/smtpservers.txt to add SMTP Servers to monitor
+
+<P>
+<BR>
+
+<LI>For monitor_dns.sh only: 
+<P>Edit /etc/monitorsuite/monitor_dns.conf
+<P>Set HOSTCHECK as the Defined host to check for DNS queries.
+<P>
+<BR>
+<P>
+
+<LI>To Complete installation set up each script to run in cron for the user monitorsuite every 5 minutes.
+<P>crontab -e -u monitorsuite
+<BR>
+<P>
+<BR>
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /usr/local/admin/bin/monitor_web.sh > /dev/null 2>&1
+<BR>
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /usr/local/admin/bin/monitor_dns.sh > /dev/null 2>&1
+<BR>
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /usr/local/admin/bin/monitor_smtp.sh > /dev/null 2>&1
+
+<P>
+<BR>
+<P>
+
+<LI>Monitor Suite DashBoard for each service (dns,smtp,web) will be available at:
+<P> http://yourwebserver/xxxmon/xxxmon.html
+<P> I.E http://yourwebserver/webmon/webmon.html
+</OL>
+</div>
+
+                                <div class="footer"></div>
+                        </div>
+
+
+                <div class="navigation">
+                        <div class="alignleft"></div>
+                        <div class="alignright"></div>
+                </div>
+
+
+        </div>
+
+        <div id="sidebar">
+                <ul>
+
+                        <li class="pagenav">
+                        <h2>Table of Contents</h2><ul><li class="page_item page-item-2">
+
+<li><A HREF="index.php">Introduction</A></li>
+<li><A HREF="features.php">Features</A></li>
+<li><A HREF="install.php">Installation</A></li>
+<li><A HREF="screenshots.php">Screenshots</A></li>
+<li><A HREF="distribution.php">Distribution</A></li>
+<li><A HREF="contact.php">Contact Us</A></li>
+<li><A HREF="faq.php">FAQ</A></li>
+                        </li>
+
+                </ul>
+
+
+                       <!--
+                            <li>
+                                <h2>Other</h2>
+                                <ul>
+                                        <li><a href="http://www.monitorsuite.net/">Test</a>
+                                        </li>
+                                </ul>
+                           </li>
+                        -->
+
+                </ul>
+                <div id="side-footer">
+               </div>
+        </div>
+</div>
+</body>
+</html>
+

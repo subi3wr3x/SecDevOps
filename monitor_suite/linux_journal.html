@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html  lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# " class="no-js wf-loading">
+  <head>
+    <meta charset="utf-8" /><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1099.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+<script>(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-1117794-1", {"cookieDomain":"auto"});ga("set", "anonymizeIp", true);ga("send", "pageview");</script>
+<meta name="Generator" content="Drupal 8 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="/themes/linuxjournal/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="canonical" href="/article/8216" />
+<link rel="shortlink" href="/node/8216" />
+<link rel="revision" href="/article/8216" />
+
+    <title>A System Monitoring Dashboard | Linux Journal</title>
+    <link rel="stylesheet" href="/sites/default/files/css/css_JBrB4Hiu5BOrvq771Zl8J4Whs0K_WY3PfiXDpmEv2dE.css?phfwvz" media="all" />
+<link rel="stylesheet" href="/sites/default/files/css/css_vZhlDpE6lHDV9eEakoEFCw3LTixcirBpjm7lJ-YPKiM.css?phfwvz" media="all" />
+
+      <!--   <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>-->
+
+    <script>
+      // Non-blocking webfonts.
+      (function iife() {
+        'use strict';
+
+        // JS is able to start executing.
+        document.documentElement.classList.remove('no-js');
+
+        // Optimization for Repeat Views
+        // Stop early for repeat views that have already cached fonts.
+        if (sessionStorage.fontsLoadedLateef && sessionStorage.fontsLoadedOpensans /* && sessionStorage.fontsLoadedNEWFONT */) {
+          document.documentElement.classList.remove('wf-loading');
+          document.documentElement.classList.add('wf-opensans');
+          document.documentElement.classList.add('wf-lateef');
+          // document.documentElement.classList.add('wf-NEWFONT');
+          return;
+        }
+
+        // Inlined Font Face Observer script + Promise polyfill.
+        /*! Font Face Observer v2.0.13 - © Bram Stein. License: BSD-3-Clause */
+        (function(){'use strict';var f,g=[];function l(a){g.push(a);1==g.length&&f()}function m(){for(;g.length;)g[0](),g.shift()}f=function(){setTimeout(m)};function n(a){this.a=p;this.b=void 0;this.f=[];var b=this;try{a(function(a){q(b,a)},function(a){r(b,a)})}catch(c){r(b,c)}}var p=2;function t(a){return new n(function(b,c){c(a)})}function u(a){return new n(function(b){b(a)})}function q(a,b){if(a.a==p){if(b==a)throw new TypeError;var c=!1;try{var d=b&&b.then;if(null!=b&&"object"==typeof b&&"function"==typeof d){d.call(b,function(b){c||q(a,b);c=!0},function(b){c||r(a,b);c=!0});return}}catch(e){c||r(a,e);return}a.a=0;a.b=b;v(a)}}
+        function r(a,b){if(a.a==p){if(b==a)throw new TypeError;a.a=1;a.b=b;v(a)}}function v(a){l(function(){if(a.a!=p)for(;a.f.length;){var b=a.f.shift(),c=b[0],d=b[1],e=b[2],b=b[3];try{0==a.a?"function"==typeof c?e(c.call(void 0,a.b)):e(a.b):1==a.a&&("function"==typeof d?e(d.call(void 0,a.b)):b(a.b))}catch(h){b(h)}}})}n.prototype.g=function(a){return this.c(void 0,a)};n.prototype.c=function(a,b){var c=this;return new n(function(d,e){c.f.push([a,b,d,e]);v(c)})};
+        function w(a){return new n(function(b,c){function d(c){return function(d){h[c]=d;e+=1;e==a.length&&b(h)}}var e=0,h=[];0==a.length&&b(h);for(var k=0;k<a.length;k+=1)u(a[k]).c(d(k),c)})}function x(a){return new n(function(b,c){for(var d=0;d<a.length;d+=1)u(a[d]).c(b,c)})};window.Promise||(window.Promise=n,window.Promise.resolve=u,window.Promise.reject=t,window.Promise.race=x,window.Promise.all=w,window.Promise.prototype.then=n.prototype.c,window.Promise.prototype["catch"]=n.prototype.g);}());
+
+        (function(){function l(a,b){document.addEventListener?a.addEventListener("scroll",b,!1):a.attachEvent("scroll",b)}function m(a){document.body?a():document.addEventListener?document.addEventListener("DOMContentLoaded",function c(){document.removeEventListener("DOMContentLoaded",c);a()}):document.attachEvent("onreadystatechange",function k(){if("interactive"==document.readyState||"complete"==document.readyState)document.detachEvent("onreadystatechange",k),a()})};function r(a){this.a=document.createElement("div");this.a.setAttribute("aria-hidden","true");this.a.appendChild(document.createTextNode(a));this.b=document.createElement("span");this.c=document.createElement("span");this.h=document.createElement("span");this.f=document.createElement("span");this.g=-1;this.b.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.c.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";
+        this.f.style.cssText="max-width:none;display:inline-block;position:absolute;height:100%;width:100%;overflow:scroll;font-size:16px;";this.h.style.cssText="display:inline-block;width:200%;height:200%;font-size:16px;max-width:none;";this.b.appendChild(this.h);this.c.appendChild(this.f);this.a.appendChild(this.b);this.a.appendChild(this.c)}
+        function t(a,b){a.a.style.cssText="max-width:none;min-width:20px;min-height:20px;display:inline-block;overflow:hidden;position:absolute;width:auto;margin:0;padding:0;top:-999px;white-space:nowrap;font-synthesis:none;font:"+b+";"}function y(a){var b=a.a.offsetWidth,c=b+100;a.f.style.width=c+"px";a.c.scrollLeft=c;a.b.scrollLeft=a.b.scrollWidth+100;return a.g!==b?(a.g=b,!0):!1}function z(a,b){function c(){var a=k;y(a)&&a.a.parentNode&&b(a.g)}var k=a;l(a.b,c);l(a.c,c);y(a)};function A(a,b){var c=b||{};this.family=a;this.style=c.style||"normal";this.weight=c.weight||"normal";this.stretch=c.stretch||"normal"}var B=null,C=null,E=null,F=null;function G(){if(null===C)if(J()&&/Apple/.test(window.navigator.vendor)){var a=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))(?:\.([0-9]+))/.exec(window.navigator.userAgent);C=!!a&&603>parseInt(a[1],10)}else C=!1;return C}function J(){null===F&&(F=!!document.fonts);return F}
+        function K(){if(null===E){var a=document.createElement("div");try{a.style.font="condensed 100px sans-serif"}catch(b){}E=""!==a.style.font}return E}function L(a,b){return[a.style,a.weight,K()?a.stretch:"","100px",b].join(" ")}
+        A.prototype.load=function(a,b){var c=this,k=a||"BESbswy",q=0,D=b||3E3,H=(new Date).getTime();return new Promise(function(a,b){if(J()&&!G()){var M=new Promise(function(a,b){function e(){(new Date).getTime()-H>=D?b():document.fonts.load(L(c,'"'+c.family+'"'),k).then(function(c){1<=c.length?a():setTimeout(e,25)},function(){b()})}e()}),N=new Promise(function(a,c){q=setTimeout(c,D)});Promise.race([N,M]).then(function(){clearTimeout(q);a(c)},function(){b(c)})}else m(function(){function u(){var b;if(b=-1!=
+        f&&-1!=g||-1!=f&&-1!=h||-1!=g&&-1!=h)(b=f!=g&&f!=h&&g!=h)||(null===B&&(b=/AppleWebKit\/([0-9]+)(?:\.([0-9]+))/.exec(window.navigator.userAgent),B=!!b&&(536>parseInt(b[1],10)||536===parseInt(b[1],10)&&11>=parseInt(b[2],10))),b=B&&(f==v&&g==v&&h==v||f==w&&g==w&&h==w||f==x&&g==x&&h==x)),b=!b;b&&(d.parentNode&&d.parentNode.removeChild(d),clearTimeout(q),a(c))}function I(){if((new Date).getTime()-H>=D)d.parentNode&&d.parentNode.removeChild(d),b(c);else{var a=document.hidden;if(!0===a||void 0===a)f=e.a.offsetWidth,
+        g=n.a.offsetWidth,h=p.a.offsetWidth,u();q=setTimeout(I,50)}}var e=new r(k),n=new r(k),p=new r(k),f=-1,g=-1,h=-1,v=-1,w=-1,x=-1,d=document.createElement("div");d.dir="ltr";t(e,L(c,"sans-serif"));t(n,L(c,"serif"));t(p,L(c,"monospace"));d.appendChild(e.a);d.appendChild(n.a);d.appendChild(p.a);document.body.appendChild(d);v=e.a.offsetWidth;w=n.a.offsetWidth;x=p.a.offsetWidth;I();z(e,function(a){f=a;u()});t(e,L(c,'"'+c.family+'",sans-serif'));z(n,function(a){g=a;u()});t(n,L(c,'"'+c.family+'",serif'));
+        z(p,function(a){h=a;u()});t(p,L(c,'"'+c.family+'",monospace'))})})};"object"===typeof module?module.exports=A:(window.FontFaceObserver=A,window.FontFaceObserver.prototype.load=A.prototype.load);}());
+
+        // Load and observe Lateef
+        var Lateef = new FontFaceObserver('Lateef', {weight: 400});
+        Promise.all([Lateef.load()]).then(function() {
+          document.documentElement.classList.remove('wf-loading');
+          document.documentElement.classList.add('wf-lateef');
+
+          // Optimization for Repeat Views
+          // Set a flag in localstorage so repeat views can skip processing FFO.
+          sessionStorage.fontsLoadedLateef = true;
+        });
+
+        // Load and observe Open Sans
+        var os300 = new FontFaceObserver('Open Sans', {weight: 300});
+        var os400 = new FontFaceObserver('Open Sans', {weight: 400});
+        Promise.all([os300.load(), os400.load()]).then(function() {
+          document.documentElement.classList.remove('wf-loading');
+          document.documentElement.classList.add('wf-opensans');
+
+          // Optimization for Repeat Views
+          // Set a flag in localstorage so repeat views can skip processing FFO.
+          sessionStorage.fontsLoadedOpensans = true;
+        });
+
+        // Load and observe NEWFONT
+        /*
+        var NEWFONT = new FontFaceObserver('NEWFONT', {weight: 400});
+        Promise.all([NEWFONT.load()]).then(function() {
+          document.documentElement.classList.remove('wf-loading');
+          document.documentElement.classList.add('wf-NEWFONT');
+
+          // Optimization for Repeat Views
+          // Set a flag in localstorage so repeat views can skip processing FFO.
+          sessionStorage.fontsLoadedNEWFONT = true;
+        });
+        */
+      })();
+    </script>
+    
+<!--[if lte IE 8]>
+<script src="/sites/default/files/js/js_VtafjXmRvoUgAzqzYTA3Wrjkx9wcWhjP0G4ZnnqRamA.js"></script>
+<![endif]-->
+
+
+  </head>
+  <body class="path-node page-node-type-xmlnode has-glyphicons">
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    <div id="wrap">
+<div class="leader-wrapper" id="leader-wrapper">
+  <div class="leader container">
+    <div class="region region-leader">
+    <section id="block-patreon" class="block block-block-content block-block-content9ae264c7-7c6f-4de3-acbf-4b4497017472 clearfix">
+  
+    
+
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item"><a href="https://www.patreon.com/bePatron?u=10705728"><img alt="Become a Patron!" data-entity-type="file" data-entity-uuid="afa5defb-aa9d-4348-b3a0-d0dd6414882c" src="/sites/default/files/inline-images/become_a_patron_button.png" /></a>
+</div>
+      
+  </section>
+
+
+  </div>
+
+  </div>
+</div>
+
+<div class="brand-wrapper" id="brand-wrapper">
+  <div class="brand container">
+    <div class="region region-brand">
+          <a class="logo navbar-btn" href="/" title="Home" rel="home">
+      <h1><img src="/themes/linuxjournal/images/ljlogo.png" alt="Linux Journal" /></h1>
+    </a>
+      
+  </div>
+
+  </div>
+
+          <div class="header-wrapper">
+    <header class="navbar navbar-default container" id="navbar" role="banner">
+                                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+            <div class="region region-navigation-collapsible">
+    <section id="block-linuxjournal-main-menu" class="block block-system block-system-menu-blockmain clearfix navbar__menu col-xs-12 col-sm-8">
+  
+    
+
+      
+      <ul class="menu menu--main nav navbar-nav">
+                        <li>
+        <a href="/subscribe">Subscribe</a>
+                  </li>
+                        <li class="expanded dropdown">
+        <a href="/" class="dropdown-toggle" data-toggle="dropdown">Topics+ <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                        <li>
+        <a href="/tag/cloud">Cloud</a>
+                  </li>
+                        <li>
+        <a href="/tag/desktop">Desktop</a>
+                  </li>
+                        <li>
+        <a href="/tag/kernel" data-drupal-link-system-path="taxonomy/term/662">Kernel</a>
+                  </li>
+                        <li>
+        <a href="/tag/mobile">Mobile</a>
+                  </li>
+                        <li>
+        <a href="/tag/multimedia">Multimedia</a>
+                  </li>
+                        <li>
+        <a href="/tag/networking">Networking</a>
+                  </li>
+                        <li>
+        <a href="/tag/privacy">Privacy</a>
+                  </li>
+                        <li>
+        <a href="/tag/programming">Programming</a>
+                  </li>
+                        <li>
+        <a href="/tag/security" data-drupal-link-system-path="taxonomy/term/31">Security</a>
+                  </li>
+                        <li>
+        <a href="/tag/servers">Servers</a>
+                  </li>
+                        <li>
+        <a href="/tag/sysadmin" data-drupal-link-system-path="taxonomy/term/21">SysAdmin</a>
+                  </li>
+        </ul>
+  
+            </li>
+                        <li>
+        <a href="/news" data-drupal-link-system-path="news">News</a>
+                  </li>
+                        <li>
+        <a href="/video" data-drupal-link-system-path="video">Videos</a>
+                  </li>
+                        <li>
+        <a href="/magazine" data-drupal-link-system-path="node/1339717">Magazine</a>
+                  </li>
+        </ul>
+  
+
+  </section>
+
+<section class="search-block-form block block-search block-search-form-block clearfix navbar__search col-xs-12 col-sm-4 col-md-4 col-md-offset-0" data-drupal-selector="search-block-form" id="block-linuxjournal-search" role="search">
+  
+      <h2 class="block-title sr-only">Search</h2>
+    
+
+      <form action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8">
+  <div class="form-item js-form-item form-type-search js-form-type-search form-item-keys js-form-item-keys form-no-label form-group">
+      <label for="edit-keys" class="control-label sr-only">Search</label>
+  
+  
+  <div class="input-group"><input title="Enter the terms you wish to search for." data-drupal-selector="edit-keys" class="form-search form-control" placeholder="Search" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" /><span class="input-group-btn"><button type="submit" value="Search" class="button js-form-submit form-submit btn-primary btn icon-only" name=""><span class="sr-only">Search</span><span class="icon glyphicon glyphicon-search" aria-hidden="true"></span></button></span></div>
+
+  
+  
+      <div id="edit-keys--description" class="description help-block">
+      Enter the terms you wish to search for.
+    </div>
+  </div>
+<div class="form-actions form-group js-form-wrapper form-wrapper" data-drupal-selector="edit-actions" id="edit-actions"></div>
+
+</form>
+
+  </section>
+
+
+  </div>
+
+        </div>
+            <div class="navbar-header">
+          <div class="region region-navigation">
+    <section id="block-mobilenavigation" class="block block-system block-system-menu-blockmenu-mobile-navbar clearfix col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-0 navbar__menu navbar__mobilenavigation">
+  
+    
+
+      
+      <ul class="menu menu--menu-mobile-navbar nav">
+                        <li>
+        <a href="/news" data-drupal-link-system-path="news">News</a>
+                  </li>
+                        <li>
+        <a href="/popular" data-drupal-link-system-path="popular">Popular</a>
+                  </li>
+                        <li>
+        <a href="/recent" data-drupal-link-system-path="recent">Recent</a>
+                  </li>
+        </ul>
+  
+
+  </section>
+
+  </div>
+
+      </div>
+          </header>
+    </div>
+  
+</div>
+  <div role="main" class="main-container container js-quickedit-main-content" id="main">
+    <div class="row">
+
+            
+            
+                  <section class="col-sm-12">
+
+                                      <div class="highlighted">  <div class="region region-highlighted">
+    
+
+  </div>
+</div>
+                  
+                
+                
+                
+                          <a id="main-content"></a>
+            <div class="region region-content">
+        <h1 class="page-header"><span>A System Monitoring Dashboard</span>
+</h1>
+
+  <div data-history-node-id="8216" class="row bs-2col-stacked node node--type-xmlnode node--view-mode-full">
+  
+
+    <div class="col-sm-12 bs-region bs-region--top">
+    
+      <div class="field field--name-field-tags field--type-entity-reference field--label-hidden field--items">
+              <div class="field--item"><div about="/taxonomy/term/17" typeof="schema:Thing">
+  
+      <h2><a href="/taxonomy/term/17">
+            <div property="schema:name" class="field field--name-name field--type-string field--label-hidden field--item">Software</div>
+      </a></h2>
+      <span property="schema:name" content="Software" class="hidden"></span>
+
+  
+</div>
+</div>
+          </div>
+  
+            <div class="field field--name-node-author field--type-ds field--label-hidden field--item">by John Ouellette</div>
+      
+            <div class="field field--name-node-post-date field--type-ds field--label-hidden field--item">on July 28, 2005</div>
+      
+  </div>
+  
+    <div class="col-sm-9 bs-region bs-region--left">
+    
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item"><div lang="en" xml:lang="en"><div lang="en" xml:lang="en"><div><a></a></div><p>
+For about a year, my company had been struggling to roll out a monitoring
+solution. False positives and
+inaccurate after-hours pages were affecting morale and
+wasting system administrators' time. After speaking to
+some colleagues about what we really need to monitor,
+it came down to a few things:
+</p><div><ul type="disc"><li><p>
+Web servers—by way of HTTP, not only physical servers.
+</p></li><li><p>
+Disk space.
+</p></li><li><p>
+SMTP servers' availability—by way of SMTP, not only physical
+servers.
+</p></li><li><p>
+A history of these events to diagnose and pinpoint problems.
+</p></li></ul></div><p>
+This article explains the process I developed and how I set up disk, Web and SMTP
+monitoring both quickly and simply. Keeping the monitoring process
+simple meant that all the tools used should be available on a recent Linux
+distribution and should not use advanced protocols, such as SNMP or
+database technology. As a result, all of my scripts use the Bash shell, basic
+HTML, some modest Perl and the wget utility. All of these monitoring
+scripts share the same general skeleton and installation steps, and they are available
+from the <i>Linux Journal</i> FTP site (see the on-line Resources).
+</p><p>
+Installing the scripts involves several steps. Start by copying the
+script to a Web server and making it world-executable with
+<tt>chmod</tt>. Then, create a directory under the root of
+your Web server where the script can write its logs and history. I used webmon for
+monitor_web.sh. The other scripts are similar: I used smtpmon for
+monitor_smtp.sh and stats for monitor_stats.pl. monitor_disk.sh is
+different from the others because it is the only one installed locally
+on each server you want to monitor. </p><p>
+Next, schedule the scripts in cron. You can run each script with any
+user capable of running wget, df -k and top. The user also needs to have the
+ability to write to the script's home. I suggest creating a local user
+called monitor and scheduling these through that user's crontab.
+Finally, install wget if it is not already present on your Linux distribution.
+</p><p>
+My first challenge was to monitor the Web servers by way of HTTP, so I
+chose wget as the engine and scripted around it. The resulting script
+is monitor_web.sh. For those unfamiliar with wget, its author describes
+it as “a free software package for retrieving files using HTTP, HTTPS
+and FTP, the most widely used Internet protocols” (see Resources).
+</p><p>
+After installation, monitor_web.sh requires only two choices for the
+user, e-mail recipient and URLs to monitor, which are labeled clearly. The
+URLs must conform to HTTP standards and return a valid <tt>http
+200 OK</tt> string to work. They can be HTTP or HTTPS, as wget and monitor_web.sh
+support both. Once installed and run the first time, the user is able to
+get to http://localhost/webmon/webmon.html and view the URLs, the last
+result and the history in a Web browser, as they all are links.
+</p><p>
+Now, let's break down the script; see monitor_web.sh, available on the
+<i>LJ</i> FTP site. First, I set all the
+variables for system utilities and the wget program. These may change on
+your system. Next, we make sure we are on the network. This ensures that if
+the server monitoring the URLs goes off-line, a massive number of alerts
+are not queued up by Sendmail until the server is back on-line.
+</p><p>
+As I loop through all the URLs, I have wget connect two times with a
+timeout of five seconds. I do this twice to reduce false positives. If
+the Web site is down, the script generates an e-mail message for the recipient and
+updates the Web page. Mail also is sent when the site is back up. The
+script sends only one message, so we don't overwhelm the recipient. This
+is achieved with the following code:
+
+</p><pre>
+
+wget $URL  2&gt;&gt;   $WLOG
+
+if (( $? != 0 ));then
+
+  echo \&lt;A HREF\="$URL"\&gt;$URL\&lt;\/A\&gt; is down\
+
+          $RTAG $EF.\
+          $LINK Last Result $LTAG  &gt;&gt; $WPAGE
+
+  if [[ ! -a down.$ENV ]];then
+
+        touch /tmp/down.$ENV
+        mail_alert down
+
+  else
+         echo Alert already sent for $ENV \
+         - waiting | tee -a $WLOG
+  fi
+
+fi
+
+</pre>
+<p>
+I have included the HTML for green and red text
+in the script, if you choose not to use graphics.
+Again, the full script is available from the <i>Linux Journal</i> FTP site.
+</p><div><a href="/files/linuxjournal.com/linuxjournal/articles/082/8216/8216f1.jpg"><img src="/files/linuxjournal.com/linuxjournal/articles/082/8216/8216f1.inline.jpg" /></a><div><p>
+Figure 1. monitor_web.sh in action. Run the script from
+cron to regenerate this page as often as needed.
+</p></div></div><p>
+With the Web servers taken care of, it was time to tackle disk
+monitoring. True to our keep-it-simple philosophy, I chose to
+create a script that would run from cron and alert my team based on the
+output of <tt>df -k</tt>. The result was monitor_disk.sh. The first real block
+of code in the script sets up the filesystems list:
+
+</p><pre>
+
+FILESYSTEMS=$(mount | grep -iv proc |\
+grep -iv cdrom | awk'{print $3}')
+
+</pre>
+<p>
+I ignore proc and am careful not to report on the CD-ROM, should my
+teammates put a disk in the drive. The script then compares the value of
+Use% to two values, THRESHOLD_MAX and THRESHOLD_WARN. If Use% exceeds
+either one, the script generates an e-mail to the appropriate recipient,
+RECIPIENT_MAX or RECIPIENT_WARN. Notice that I made sure the Use% value for each
+filesystem is interpreted as an integer with this line:
+
+</p><pre>
+
+typeset -i  UTILIZED=$(df -k $FS | tail -1 | \
+awk '{print $5}' | cut -d"%" -f1)
+
+</pre>
+<p>
+A mailing list was set up with my team members' e-mail addresses and the
+e-mail address of the on-call person to receive the critical e-mails and
+pages. You may need to do the same with your mail
+server software, or you simply can use your group or pager
+as both addresses.
+</p><p>
+Because our filesystems tend to be large, about 72GB–140GB, I have set
+critical alerts to 95%, so we still have some time to address issues
+when alerted. You can set your own threshold with the THRESHOLD_MAX
+and THRESHOLD_WARN variables. Also, our database servers run some
+disk-intensive jobs and can generate large amounts of archive log files,
+so I figured every 15 minutes is a good frequency at which to monitor. For
+servers with less active filesystems, once an hour is enough.
+</p><p>
+Our third script, monitor_smtp.sh, monitors our SMTP servers'
+ability to send mail. It is similar to the first two scripts
+and simply was a matter of finding a way to connect directly to a user-defined
+SMTP server so I could loop through a server list and send a
+piece of mail. This is where smtp.pl comes in. It is a Perl script
+(Listing 1) that uses the NET::SMTP module to send mail
+to an SMTP address. Most recent distributions have this module
+installed already (see the Do I Have That Perl Module Installed sidebar). Monitor_smtp.sh updates the defined
+Web page based on the success of
+the transmission carried out by smtp.pl. No attempt is made to alert our
+group, as this is a trouble-shooting tool and ironically cannot rely on
+SMTP to send mail if a server is down. Future versions of monitor_smtp.sh
+may include a round-robin feature and be able to send an alert through
+a known working SMTP server.
+</p></div>
+
+<div lang="en" xml:lang="en"><div><a></a></div><div><p><b>
+Listing 1. smtp.pl tests outgoing mail through the
+SMTP server.</b></p><pre>
+
+#!/usr/bin/perl -w
+#
+# Title  :   smtp.pl
+# Author :   John_Ouellette@yahoo.com
+# Files  :   smtp.pl
+# Pupose :   Send email through SMTP server
+#            Called from monitor_smtp.sh
+#
+# Submit as
+
+use Net::SMTP;
+
+my $rcpt   = $ARGV[2] || 'mygroup@somewhere';
+my $sender = $ARGV[1] || 'root@host01';
+my $host   = $ARGV[0];
+
+
+#Start Script
+
+my $smtp =Net::SMTP-&gt;new($host, Debug =&gt; 1);
+my $input="test msg for server $host";
+
+$smtp-&gt;mail("$sender");
+$smtp-&gt;to("$rcpt");
+$smtp-&gt;data();
+$smtp-&gt;datasend("To: $rcpt\n") ;
+$smtp-&gt;datasend("From: $sender\n") ;
+$smtp-&gt;datasend("Subject: $host test\n") ;
+$smtp-&gt;datasend("$input");
+$smtp-&gt;dataend();
+$smtp-&gt;quit;
+
+</pre></div></div><div lang="en" xml:lang="en"><div><a></a></div><div><p><b>
+Do I Have That Perl Module Installed?
+</b></p><p>
+An easy way to check whether you have any Perl module
+installed is by issuing this from the command line:
+
+</p><pre>
+$ perl -e "use Net::SMTP";
+</pre>
+<p>
+If nothing prints, you have that module installed. If you're missing
+the module, you get an error that looks like this:
+
+</p><pre>
+
+$perl -e "use Net::OTHER";
+Can't locate Net/OTHER.pm in @INC (@INC contains:
+/usr/lib/perl5/5.8.3/i386-linux-thread-multi /usr/lib/perl5/5.8.3
+/usr/lib/perl5/vendor_perl/5.8.0 /usr/lib/perl5/vendor_perl .) at -e line
+1.
+BEGIN failed--compilation aborted at -e line 1.
+
+</pre>
+<p>
+This error indicates a lack of the module in question.
+</p></div><p>
+Finally, we come to our stats script,
+monitor_stats.pl. This script logs in to each host and
+runs the commands:
+
+</p><pre>
+
+df -k
+swapon -s
+top -n 1 | head -n 20
+hostname
+uptime
+
+</pre>
+<p>
+It then displays the results in a
+browser (Figure 2) and saves the result in a log,
+again sorted by date on the filesystem. It serves
+as a simple dashboard to give quick stats on
+each server.
+</p><p>
+The benefit of this monitoring design is threefold:
+</p><div><ol type="1"><li><p>
+We have a history of CPU, disk and swap usage, and we easily can pinpoint
+where problems may have occurred.
+</p></li><li><p>
+Tedious typing to extract this information for each
+server is reduced. This comes in handy before leaving work to resolve potential
+problems before getting paged at night.
+</p></li><li><p>
+Management quickly can see how well we're doing.
+</p></li></ol></div><p>
+We are using the insecure rsh protocol in this script to show
+you how to get this set up quickly, but we recommend that you use SSH
+with properly distributed keys to gain security.
+</p><div><a href="/files/linuxjournal.com/linuxjournal/articles/082/8216/8216f2.jpg"><img src="/files/linuxjournal.com/linuxjournal/articles/082/8216/8216f2.inline.jpg" /></a><div><p>
+Figure 2. monitor_stats.pl in Action
+</p></div></div></div><div lang="en" xml:lang="en"><div><a></a>
+Conclusion</div><p>
+With the use of this new system monitoring dashboard, my team's
+productivity has increased and and its confidence
+in monitoring has soared, because we no longer are
+wasting time chasing down false positives. A history
+of system performance has been a real time saver
+in diagnosing problems. Finally, easy installation
+allows users with basic skills to conquer a complex
+system administration problem in one business day.
+</p><p><span class="bold"><b>Resources for this article:</b></span> <a href="/article/8269">/article/8269</a>.
+</p></div></div>
+<div><p>
+John Ouellette is a system administrator with nine years of experience in
+Microsoft Windows NT
+and UNIX. He believes the command line is king and loves chicken
+parmigiana. He can be reached at <a href="mailto:john_ouellette@yahoo.com">john_ouellette@yahoo.com</a>.
+</p></div></div>
+      
+    <section class="section--disqus">
+    <a id="comments-link" class="btn btn-default" href="https://www.linuxjournal.com/article/8216#disqus_thread">Load Disqus comments</a>
+
+    <div id="disqus_thread"></div>
+  <noscript>Our discussions are <a href="https://disqus.com/?ref_noscript" rel="nofollow">powered by Disqus</a>, which require JavaScript.</noscript>
+
+    
+</section>
+  </div>
+  
+    <div class="col-sm-3 bs-region bs-region--right">
+    
+            <div class="field field--name-dynamic-block-fieldnode-related-articles field--type-ds field--label-hidden field--item"><div class="views-element-container form-group"><div class="view view-related-content view-id-related_content view-display-id-block_1 js-view-dom-id-0724e5d7b1be0ae0ff83d85a68cc8823db4a38bb5d19a1858016a91019237693">
+  
+    
+      <div class="view-header">
+      <h2>You May Like</h2>
+    </div>
+      
+      <div class="view-content">
+          <div class="views-row"><div class="views-field views-field-field-node-image"><div class="field-content">  <a href="/content/open-source-software-developers-are-all-us"><img src="/sites/default/files/styles/75x75_square/public/nodeimage/story/Ostif%20support.png?itok=8_6x033x" width="75" height="75" alt="three abstract figures holding a sphere" typeof="foaf:Image" class="img-responsive" />
+
+</a>
+</div></div><div class="views-field views-field-title"><span class="field-content"><a href="/content/open-source-software-developers-are-all-us" hreflang="und">For Open-Source Software, the Developers Are All of Us</a></span></div><div class="views-field views-field-uid"><span class="field-content"><a href="/users/derek-zimmer-0" hreflang="en">Derek Zimmer</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-field-node-image"><div class="field-content">  <a href="/content/lotfi-ben-othmane-martin-gilje-jaatun-and-edgar-weippls-empirical-research-software-security"><img src="/sites/default/files/styles/75x75_square/public/nodeimage/story/12237f5.jpg?itok=5B4x17uz" width="75" height="75" alt="" typeof="foaf:Image" class="img-responsive" />
+
+</a>
+</div></div><div class="views-field views-field-title"><span class="field-content"><a href="/content/lotfi-ben-othmane-martin-gilje-jaatun-and-edgar-weippls-empirical-research-software-security" hreflang="und">Lotfi ben Othmane, Martin Gilje Jaatun and Edgar Weippl&#039;s Empirical Research for Software Security (CRC Press)</a></span></div><div class="views-field views-field-uid"><span class="field-content"><a href="/users/james-gray" hreflang="en">James Gray</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-field-node-image"><div class="field-content">  <a href="/content/heirloom-software-past-adventure"><img src="/sites/default/files/styles/75x75_square/public/nodeimage/story/ADVENT_--_Will_Crowthers_original_version.png?itok=jZgKLSWd" width="75" height="75" alt="" typeof="foaf:Image" class="img-responsive" />
+
+</a>
+</div></div><div class="views-field views-field-title"><span class="field-content"><a href="/content/heirloom-software-past-adventure" hreflang="und">Heirloom Software: the Past as Adventure</a></span></div><div class="views-field views-field-uid"><span class="field-content"><a href="/user/1000899" hreflang="en">Eric S. Raymond</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-field-node-image"><div class="field-content">  <a href="/content/softmaker-freeoffice"><img src="/sites/default/files/styles/75x75_square/public/nodeimage/story/12028f8.png?itok=JZvXRwDY" width="75" height="75" alt="" typeof="foaf:Image" class="img-responsive" />
+
+</a>
+</div></div><div class="views-field views-field-title"><span class="field-content"><a href="/content/softmaker-freeoffice" hreflang="und">SoftMaker FreeOffice</a></span></div><div class="views-field views-field-uid"><span class="field-content"><a href="/users/james-gray" hreflang="en">James Gray</a></span></div></div>
+
+    </div>
+  
+          </div>
+</div>
+</div>
+      
+  </div>
+  
+  
+</div>
+
+
+
+  </div>
+
+              </section>
+
+                </div>
+  </div>
+
+      <footer class="footer container" role="contentinfo">
+        <div class="region region-footer">
+    <section id="block-subscribebanner" class="block block-block-content block-block-contentc630d46a-fc08-4b5b-8e79-bc07b89a408f clearfix">
+  
+    
+
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item"><a href="/subscribe"><picture> 
+<source media="all and (min-width: 768px)" data-entity-type="file" data-entity-uuid="bcd2e038-a112-47b9-a5d9-c976671caa8a" srcset="/sites/default/files/inline-images/Subwebbanner_0.jpg" 2x" type="image/jpeg" /> 
+<source media="all and (max-width: 767px)" data-entity-type="file" data-entity-uuid="4b321af7-6624-4796-aa42-699d449c5093" srcset="/sites/default/files/inline-images/Mobile-subs_0.png" 1x" type="image/jpeg" /> 
+<img alt="Subscribe to Linux Journal's Digital Edition. Join a community with a deep appreciation for open source philosophies, digital freedoms, and privacy." data-entity-type="file" data-entity-uuid="bcd2e038-a112-47b9-a5d9-c976671caa8a" src="/sites/default/files/inline-images/Subwebbanner_0.jpg" /> 
+</picture></a></div>
+      
+  </section>
+
+
+  </div>
+
+      		<div class="footer-blocks col-sm-12">
+                <div class="col-md-6 col-sm-12 footer-left">
+                        <div class="region region-footer-left">
+    <section id="block-connectwithusfooter" class="block block-block-content block-block-content5e722bd4-5e08-454b-8507-956089bfa661 clearfix">
+  
+    
+
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item"><div class="footer-heading">Connect With Us <span class="social-media"><a href="https://youtube.com/linuxjournalonline"  alt="Linux Journal on YouTube"><i class="fa fa-youtube fa-2x"></i></a><a href="https://www.facebook.com/linuxjournal/" alt="Linux Journal on Facebook"><i class="fa fa-facebook-f fa-2x"></i><a href="https://twitter.com/linuxjournal" alt="Linux Journal on Twitter"><i class="fa fa-twitter fa-2x"></i></a></span></div>
+
+<p>Linux Journal, currently celebrating its 24th year of publication, is the original magazine of the global Open Source community.</p></div>
+      
+  </section>
+
+<section id="block-linuxjournal-block-9" class="block block-block-content block-block-content8669793b-e217-4426-a79e-eb3c21ede127 clearfix">
+  
+    
+
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item"><div id="copyright">© 2018 Linux Journal, LLC. All rights reserved.</div>
+</div>
+      
+  </section>
+
+<nav role="navigation" aria-labelledby="block-footersubmenu-menu" id="block-footersubmenu">
+            
+  <h2 class="visually-hidden" id="block-footersubmenu-menu">Footer Submenu</h2>
+  
+
+        
+      <ul class="menu menu--footer-submenu nav">
+                        <li>
+        <a href="/content/privacy-statement" data-drupal-link-system-path="node/1000321">Privacy Policy</a>
+                  </li>
+                        <li>
+        <a href="/terms-service" data-drupal-link-system-path="node/1339804">Terms of Service</a>
+                  </li>
+                        <li>
+        <a href="/sponsors" data-drupal-link-system-path="node/1339742">Advertise</a>
+                  </li>
+        </ul>
+  
+
+  </nav>
+
+  </div>
+
+                  </div>
+        
+        		<div class="col-md-4 col-sm-8 footer-middle">
+                        <div class="region region-footer-middle">
+    <nav role="navigation" aria-labelledby="block-footermenucolumn1-menu" id="block-footermenucolumn1">
+            
+  <h2 class="visually-hidden" id="block-footermenucolumn1-menu">Footer Menu Column 1</h2>
+  
+
+        
+      <ul class="menu menu--footer-menu-column-1 nav">
+                        <li>
+        <a href="/subscribe">Subscribe</a>
+                  </li>
+                        <li>
+        <a href="/renew">Renew</a>
+                  </li>
+                        <li>
+        <a href="/digital">Backissues</a>
+                  </li>
+                        <li>
+        <a href="/subs/customer_service" data-drupal-link-system-path="node/1009253">Customer Service</a>
+                  </li>
+        </ul>
+  
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-footermenucolumn2-menu" id="block-footermenucolumn2">
+            
+  <h2 class="visually-hidden" id="block-footermenucolumn2-menu">Footer Menu Column 2</h2>
+  
+
+        
+      <ul class="menu menu--footer-menu-column-2 nav">
+                        <li>
+        <a href="/content/masthead" data-drupal-link-system-path="node/1007727">Masthead</a>
+                  </li>
+                        <li>
+        <a href="/content/linux-journal-20-faq" data-drupal-link-system-path="node/1339633">FAQ</a>
+                  </li>
+                        <li>
+        <a href="/author" data-drupal-link-system-path="node/1009249">Authors</a>
+                  </li>
+                        <li>
+        <a href="/contact" data-drupal-link-system-path="contact">Letters to Editor</a>
+                  </li>
+        </ul>
+  
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-footermenucolumn3-menu" id="block-footermenucolumn3">
+            
+  <h2 class="visually-hidden" id="block-footermenucolumn3-menu">Footer Menu Column 3</h2>
+  
+
+        
+      <ul class="menu menu--footer-menu-column-3 nav">
+                        <li>
+        <a href="/rss_feeds" data-drupal-link-system-path="node/1000457">RSS Feeds</a>
+                  </li>
+                        <li>
+        <a href="/enewsletters" data-drupal-link-system-path="node/1007818">Newsletters</a>
+                  </li>
+                        <li>
+        <a href="http://www.linuxjournalstore.com/">Merchandise</a>
+                  </li>
+                        <li>
+        <a href="/aboutus" data-drupal-link-system-path="node/1000267">Contact Us</a>
+                  </li>
+        </ul>
+  
+
+  </nav>
+
+  </div>
+
+                  </div>
+        
+                <div class="col-md-2 col-sm-4 footer-right">
+                        <div class="region region-footer-right">
+    <section id="block-poweredbypiafooter" class="block block-block-content block-block-contente8212bd8-8d73-432d-bae8-4048739fc08f clearfix">
+  
+    
+
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item"><p>Powered by</p>
+
+<p><a href="http://www.privateinternetaccess.com/pages/buy-vpn/linuxjournal"><img alt="Powered by Private Internet Access" data-entity-type="file" data-entity-uuid="0fecf230-9d20-41c1-bf85-59e5eed64f2e" src="/sites/default/files/inline-images/pia-logo-black.jpg" /></a></p></div>
+      
+  </section>
+
+
+  </div>
+
+                  </div>
+                </div>
+    </footer>
+  
+</div> 
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node\/8216","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","cookieconsent":{"message":"LinuxJournal.com uses cookies to ensure you get the best experience on our website. By pressing the consent button and closing this message or continuing to use our site, you agree to our cookies policy.","dismiss":"I Accept","learnMore":"More info","link":"\/content\/privacy-statement","path":"\/","expiry":"365","target":"_self","domain":".www.linuxjournal.com","markup":"\u003Cdiv class=\u0022cc_banner cc_container cc_container--open\u0022\u003E\n    \u003Ca href=\u0022#null\u0022 data-cc-event=\u0022click:dismiss\u0022 target=\u0022_blank\u0022 class=\u0022cc_btn cc_btn_accept_all\u0022\u003EI Accept\u003C\/a\u003E\n    \u003Cp class=\u0022cc_message\u0022\u003ELinuxJournal.com uses cookies to ensure you get the best experience on our website. By pressing the consent button and closing this message or continuing to use our site, you agree to our cookies policy. \u003Ca data-cc-if=\u0022options.link\u0022 target=\u0022_self\u0022 class=\u0022cc_more_info\u0022 href=\u0022\/content\/privacy-statement\u0022\u003EMore info\u003C\/a\u003E\u003C\/p\u003E\n    \u003Ca class=\u0022cc_logo\u0022 target=\u0022_blank\u0022 href=\u0022http:\/\/silktide.com\/cookieconsent\u0022\u003ECookie Consent plugin for the EU cookie law\u003C\/a\u003E\n\u003C\/div\u003E\n","container":null,"theme":false},"google_analytics":{"trackOutbound":true,"trackMailto":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"bootstrap":{"forms_has_error_value_toggle":1,"popover_enabled":1,"popover_animation":1,"popover_container":"body","popover_content":"","popover_delay":"0","popover_html":0,"popover_placement":"right","popover_selector":"","popover_title":"","popover_trigger":"click","popover_trigger_autoclose":1},"linuxjournal":{"disqus":{"origin":"https:\/\/www.linuxjournal.com","prettyUrl":"\/article\/8216","fullUrl":"https:\/\/www.linuxjournal.com\/article\/8216","embedUrl":"https:\/\/linuxjournal.disqus.com\/embed.js","shortname":"linuxjournal"}},"statistics":{"data":{"nid":"8216"},"url":"\/core\/modules\/statistics\/statistics.php"},"ajaxTrustedUrl":{"\/search\/node":true},"user":{"uid":0,"permissionsHash":"c6d560e532040877d2aa806f24e67b7bac958bcc1fbe108029a267aa475a1917"}}</script>
+<script src="/sites/default/files/js/js_DonHH16GuZtiHRKjfkFSKx6JCgUjP3lu_dzGsaU7MQ0.js"></script>
+<script src="https://linuxjournal.disqus.com/count.js" async defer id="dsq-count-scr"></script>
+<script src="/sites/default/files/js/js_EPFPWQBAA8z0T7rM_uxni-oLnbtLyVJDPveCmauMtDI.js"></script>
+
+    <!-- START EMBED -->
+<script src="https://api.b2c.com/api/init-448i7exgpyqpr9c144q.js" data-cfasync="false" async></script><noscript><img src="https://api.b2c.com/api/noscript-448i7exgpyqpr9c144q.gif"></noscript>
+<!-- END EMBED -->
+  <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"f3ebf7bfbf","applicationID":"121000636","transactionName":"ZgYBZBcFV0FZABcNXl9MIlMRDVZcFxMCA1RuAAJTDQE=","queueTime":0,"applicationTime":11,"atts":"SkECEl8fRE8=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
