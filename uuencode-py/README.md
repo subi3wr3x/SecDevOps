@@ -3,7 +3,7 @@ Encode and decode uuencoded file using a mapping of your choosing (pentest,etc).
 
 #### Usage
 ```
-./uu2hello.py UUENCODED_FILE.UUE (creates UUENCODED_FILE.uue.hello
+./uu2hello.py UUENCODED_FILE.UUE (creates UUENCODED_FILE.uue.hello)
 ```
 
 Send it somewhere...
