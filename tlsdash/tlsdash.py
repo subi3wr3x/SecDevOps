@@ -29,7 +29,7 @@ def get_SSL_Expiry_Date(host, port) -> 'byte string':
     return x509.get_notAfter()
 
 def get_SSL_Expiry_DateCmd(host, port) -> 'text':
-    """ Get Cert using openssl - C2MR workaround """
+    """ Get Cert using openssl -  workaround for client auth sites """
     command="echo q | openssl s_client -connect " + host + ":" + str(port) + \
         " 2>/dev/null | openssl x509 -enddate -noout"
     ph = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, \
