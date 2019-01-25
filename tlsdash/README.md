@@ -12,4 +12,5 @@ This script consumes Virtual IP/host data and connects to the URL to extract a d
 -Schedule tlsdash periodically 
 
 #### Pics
--TBD
+<BR>
+![TLS Dashboard](tlsdash.png?raw=true "TLS Dashboard")
