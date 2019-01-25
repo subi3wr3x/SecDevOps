@@ -183,7 +183,7 @@ def CalcDelta(urldict,app):
     fh.close()
 
 
-applist = ["siteminder", "securid"]
+applist = ["app1", "app2","app3"]
 
 for app in applist:
     cdbm_cert_data = app + ".json"
