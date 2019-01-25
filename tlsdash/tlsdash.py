@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
 """ Connect to Various TLS/SSL URLs and collect their expiration Dates """
 
