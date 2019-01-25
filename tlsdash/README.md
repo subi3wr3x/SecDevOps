@@ -11,5 +11,5 @@ This script consumes Virtual IP/host data and connects to the URL to extract a d
 - Dump relevant URL data
 - Schedule tlsdash periodically 
 
-#### Pics
+#### Screen Shot 
 ![TLS Dashboard](tlsdash.png?raw=true "TLS Dashboard")
