@@ -9,7 +9,6 @@ import sys
 import ssl
 import json
 import socket
-import pycurl
 import OpenSSL
 import subprocess
 from datetime import date,time,datetime
