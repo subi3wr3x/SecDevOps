@@ -80,7 +80,7 @@ except Exception as e:
     sys.exit(5)
 
 for line in applist:
-    app,grn = line.split(":")
+    app,appid = line.split(":")
     cdbm_cert_data = app + ".json"
     print('\nLoading data from ' + cdbm_cert_data)
     try:
