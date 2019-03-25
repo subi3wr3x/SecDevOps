@@ -12,3 +12,6 @@ If this config you'll have both Ethernet ports without an IP, but have the PI be
 
 #### Dependencies 
 apt-get install bridge-utils
+
+#### Extra Fun
+Install the [DataPlicity](https://www.dataplicity.com) client and connect to your PI from anywhere.
