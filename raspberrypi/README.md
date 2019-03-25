@@ -1,7 +1,7 @@
 #### Pi 3 B+ Config for use as a Network Tap 
 
 #### Usage
-Add a USB Ethernet Adapter to the pi and setup the pi w/the included configs
+Add a [USB Ethernet Adapter](https://www.amazon.com/gp/product/B00FFJ0RKE/) to the pi and setup the pi w/the included configs
 
 #### Expectations
 The PI will sit between your Cable Modem and Wireless Router using a Linux Ethernet Bridge.
