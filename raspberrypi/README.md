@@ -15,7 +15,7 @@ The PI will sit between your Cable Modem and Wireless Router using a [Linux Ethe
      |
      |
      |
-     +<------------------Eth0---+
+     +<------------------Eth0 (No IP)--+
      |
      +-----+
      |     |
@@ -23,18 +23,20 @@ The PI will sit between your Cable Modem and Wireless Router using a [Linux Ethe
      |     |XXXXXXXXXXXXXWifi Signal.....XXXXXXXXXX
      +----++                                    XX
           |                                    XX
-          +<-------------Eth1---+             XX
+          +<-------------Eth1 (No IP)--+      XX
           |                                  XX
       +---+---------------------------+    XXX
-      |                               |  XXX
+      |  (DMZ port has the ISP IP)    |  XXX
+      |                               |
       |  Wirleless Router             |XX
       |                               |
+      |  (internal ports)             |
       +-------------------------------+
          |
          |
-        +---------------+
-        | wired pc, etc.|
-        +---------------+
+        +------------------------+
+        | Internal wired pc, etc.|
+        +------------------------+
 
 ```
 
