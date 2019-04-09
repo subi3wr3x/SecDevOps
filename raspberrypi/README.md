@@ -30,6 +30,11 @@ The PI will sit between your Cable Modem and Wireless Router using a [Linux Ethe
       |  Wirleless Router             |XX
       |                               |
       +-------------------------------+
+         |
+         |
+        +---------------+
+        | wired pc, etc.|
+        +---------------+
 
 ```
 
