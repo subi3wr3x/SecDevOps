@@ -15,9 +15,6 @@ You can tryout BriarIDS as mentioned or go on your on using any of Suricata, Bro
 #### Dependencies 
 apt-get install bridge-utils
 
-#### Extra Fun
-Install the [DataPlicity](https://www.dataplicity.com) client and connect to your PI from anywhere.
-
 #### ifconfig
 
 ```
@@ -61,3 +58,6 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX packets 1721033  bytes 812955265 (775.2 MiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
+
+#### Extra Fun
+Install the [DataPlicity](https://www.dataplicity.com) client and connect to your PI from anywhere.
