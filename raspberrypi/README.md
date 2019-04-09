@@ -20,6 +20,7 @@ Install the [DataPlicity](https://www.dataplicity.com) client and connect to you
 
 #### ifconfig
 
+```
 br0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet6 fe80::3e8c:f8ff:feff:8e00  prefixlen 64  scopeid 0x20<link>
         ether 3c:8c:f8:ff:8e:00  txqueuelen 1000  (Ethernet)
@@ -59,4 +60,4 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 1721033  bytes 812955265 (775.2 MiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
+```
