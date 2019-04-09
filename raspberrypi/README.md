@@ -4,7 +4,34 @@
 Add a [USB Ethernet Adapter](https://www.amazon.com/gp/product/B00FFJ0RKE/) to the pi and setup the pi w/the included configs
 
 #### Expectations
-The PI will sit between your Cable Modem and Wireless Router using a [Linux Ethernet Bridge](http://www.microhowto.info/howto/bridge_traffic_between_two_or_more_ethernet_interfaces_on_linux.html).
+The PI will sit between your Cable Modem and Wireless Router using a [Linux Ethernet Bridge](http://www.microhowto.info/howto/bridge_traffic_between_two_or_more_ethernet_interfaces_on_linux.html):
+
+```
++-------------------+
+|                   |
+|    Cable Modem    |
+|                   |
++----+--------------+
+     |
+     |
+     |
+     +<------------------Eth0---+
+     |
+     +-----+
+     |     |
+     | Pi  |
+     |     |XXXXXXXXXXXXXWifi Signal.....XXXXXXXXXX
+     +----++                                    XX
+          |                                    XX
+          +<-------------Eth1---+             XX
+          |                                  XX
+      +---+---------------------------+    XXX
+      |                               |  XXX
+      |  Wirleless Router             |XX
+      |                               |
+      +-------------------------------+
+
+```
 
 This can be an alternate deployment than the one at [BriarIDS](https://github.com/musicmancorley/BriarIDS/wiki/Deployment-Instructions)
 
