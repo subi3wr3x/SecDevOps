@@ -1,5 +1,3 @@
-![uuencode](https://www.researchgate.net/profile/Ruby_Lee/publication/221130944/figure/fig5/AS:339857474899975@1458039744543/Uuencode-of-bit-using-pdep.png)
-
 #### uuencode-py
 Encode and decode uuencoded file using a mapping of your choosing (pentest,etc).
 
@@ -35,3 +33,5 @@ ls -ltR > file.txt
 
 ```
 The files differ only by the inital unix file name line.
+
+![uuencode](https://www.researchgate.net/profile/Ruby_Lee/publication/221130944/figure/fig5/AS:339857474899975@1458039744543/Uuencode-of-bit-using-pdep.png)
