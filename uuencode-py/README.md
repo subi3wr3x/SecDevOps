@@ -35,6 +35,6 @@ ls -ltR > file.txt
 The files differ only by the inital unix file name line.
 
 #### References
-[Research Gate](https://www.researchgate.net/figure/Uuencode-of-bit-using-pdep_fig5_221130944)
+[Research Gate Pic:](https://www.researchgate.net/figure/Uuencode-of-bit-using-pdep_fig5_221130944)
 
 ![uuencode](https://www.researchgate.net/profile/Ruby_Lee/publication/221130944/figure/fig5/AS:339857474899975@1458039744543/Uuencode-of-bit-using-pdep.png)
