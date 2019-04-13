@@ -21,15 +21,15 @@ Send it somewhere...
 Take a .uue file, convert it and then convert back using the included 'test_uu.sh' (diffs are shown)
 
 ```
-$cp /etc/passwd . 
-$uuencode passwd passwd > passwd.uue
-./test_uu.sh passwd.uue
-79ad1ac23a62220c59c4958a65ee9790cb744658d48132132f544f57b851543c  passwd.uue
-fd0e713b20b8807a1df853863f2683e365262ee4bd849b695d501abced79c8da  passwd.uue.hello.uue
+ls -ltR > file.txt
+./test_uu.sh  file.txt 
+5782f2802458eb7a42d1c0ee2e2b7ac45b75d45aea4fe57e4d2a541d7a8e35b3  file.txt
+7b32140282bd55c158bef75ca0174a658ba04793f6190a5d29ee527d8947ac1f  file.txt.uue
+35d94c1bdd7f719f43d164e4273240bd3b0d116494e34c2d1bbc6a6b3c6d2c6a  file.txt.uue.hello.uue
 1c1
-
-< begin 644 passwd 
+< begin 664 file.txt
 ---
 > begin 664 test.text.tar
+
 ```
 The files differ only by the inital unix file name line.
