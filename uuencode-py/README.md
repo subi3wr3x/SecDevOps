@@ -13,7 +13,7 @@ Send it somewhere...
 ```
 #### Expectations
 - The original .uue file will differ from the final decoded UUENCODED_FILE.uue.hello.uue as it does not take the final name with it as that would be undesirable (if sent via an unencrypted transport)
-- The final decoded file will always be named test.text.tar
+- The final decoded file will always be named test.text.tar for privacy
 - A mapping of special characters to certain "Hello" values was chosen; this could be changed
 
 
