@@ -72,7 +72,6 @@
           mode: 0755
         with_items:
           - config
-          - rsaadmin.priv
           - rsaadmin_known_hosts_qa 
         tags:
             - cron
