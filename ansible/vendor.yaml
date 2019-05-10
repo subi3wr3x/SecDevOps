@@ -1,0 +1,163 @@
+---  
+- name: This Play book will copy files to RSA Appliances
+  hosts: rsaboxes 
+  remote_user: rsaadmin
+  gather_facts: no 
+  tasks:
+      - name: obtain secret from  network password oracle 
+        vars:
+          pworacle: "https://yourhost/rest-json/"
+          namespace: "yourspace"
+          key: "rsaadmin"
+          run_once: true
+        connection: local
+        shell: "/usr/bin/curl --negotiate -k -u : -X GET --header 'Accept: application/json' '{{pworacle}}TellKey?namespace={{namespace}}&keyname={{key}}' | tr -d '{}\"' | cut -c6-"
+        delegate_to: 127.0.0.1
+        register: mypassword 
+        tags:
+          - scv
+
+      - set_fact:
+          ansible_ssh_pass: "{{ mypassword.stdout }}"
+          no_log: true
+        tags:
+          - set_fact 
+
+      - name: rsaadmin setup directories
+        file:
+          path: /home/rsaadmin/{{item}}
+          state: directory
+          owner: rsaadmin
+          group: rsaadmin
+          mode: 0700
+        with_items:
+            - patches/
+            - scripts/
+            - .ssh/
+        tags:
+          - rssadmindirs
+
+      - name: rsaadmin set up authorized keys
+        authorized_key:
+          user: rsaadmin
+          state: present
+          key: "{{ lookup('file','files/rsaadmin.pub')}}"
+          path: /home/rsaadmin/.ssh/authorized_keys
+      
+      - name: rsaadmin Copy files to scripts
+        tags:
+          - rsaadminfiles
+        copy:
+          src: files/scripts/{{ item }}
+          dest: /home/rsaadmin/scripts/
+          owner: rsaadmin
+          group: rsaadmin
+          mode: 0755
+        with_items:
+          - Backup_Primary_SecurID.sh
+          - Backup_Primary_SecurID_QA.sh
+          - Backup_cron_wrapper.sh
+          - SendEmail.sh
+          - alias_gen
+          - check_load.sh
+          - check_ntp.sh
+          - keyscan.sh
+          - mail.jar
+          - prune_backups.sh
+          - setperms.sh
+          - setup_cdrom_patch.sh
+      
+      - name: rsaadmin Copy ssh files
+        copy:
+          src: files/ssh/{{ item }}
+          dest: /home/rsaadmin/.ssh/
+          owner: rsaadmin
+          group: rsaadmin
+          mode: 0755
+        with_items:
+          - config
+          - rsaadmin.priv
+          - rsaadmin_known_hosts_qa 
+        tags:
+            - cron
+      
+      - name: rsaadmin  Copy files for crontab 
+        copy:
+          src: files/etc/rsaadmin_crontab
+          dest: /home/rsaadmin/scripts/rsaadmin_crontab 
+          owner: rsaadmin
+          group: rsaadmin
+          mode: 0755
+        tags:
+            - crontabfile
+        notify: "Install rsaadmin crontab"
+
+      - name: Copy misc root files manageMount.sh  
+        become: yes 
+        become_method: sudo
+        vars:
+          ansible_become_pass: "{{ mypassword.stdout }}"
+        copy:
+          src: files/rsautils/manageMount.sh
+          #dest: /opt/rsa/am/utils/bin/appliance/manageMount.sh
+          dest: /tmp/hh.sh
+          mode: 0755
+      
+      - name: Copy misc root files aceserver_qa 
+        become: yes 
+        become_method: sudo
+        vars:
+          ansible_become_pass: "{{ mypassword.stdout }}"
+        copy:
+          src: files/etc/aceserver_qa
+          dest: /etc/sysconfig/aceserver_qa
+          mode: 0755
+      
+      - name: Copy misc root files check_ntp.sh
+        become: yes 
+        become_method: sudo
+        vars:
+          ansible_become_pass: "{{ mypassword.stdout }}"
+        copy:
+          src: files/scripts/check_ntp.sh
+          dest: /root/check_ntp.sh
+          mode: 0755
+
+      - name: Copy /etc/ssh/sshd_config file
+        become: yes 
+        become_method: sudo
+        vars:
+          ansible_become_pass: "{{ mypassword.stdout }}"
+        copy:
+          src: files/ssh/sshd_config
+          dest: /etc/ssh/sshd_config
+          mode: 0444
+        notify: "sshd config check"
+        tags:
+          - sshd
+
+  handlers:
+      - name: "rsaadmin set up cron"
+        command: /usr/bin/crontab /home/rsaadmin/scripts/rsaadmin_crontab
+        listen: "Install rsaadmin crontab"
+
+      - name: "sshd config check handler"
+        shell: /usr/sbin/sshd -t 
+        become: yes 
+        become_method: sudo
+        vars:
+          ansible_become_pass: "{{ mypassword.stdout }}"
+        listen: "sshd config check"
+        notify: "restart sshd"
+
+      - name: "restart sshd handler"
+        become: yes 
+        become_method: sudo
+        vars:
+          ansible_become_pass: "{{ mypassword.stdout }}"
+        service:
+          name: sshd
+          state: restarted
+        listen: "restart sshd"
+
+...
