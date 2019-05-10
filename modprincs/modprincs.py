@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-"""modprinc.py
+"""
+
+modprinc.py -
 
 Simply put we act on users in a Kerberos Database and setup some
 guardrails to ensure consistenly and reliable execution.
