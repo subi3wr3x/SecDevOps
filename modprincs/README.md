@@ -4,8 +4,8 @@
 
 ## Usage
 ```
-./forward.py -h 
-usage: forward.py [-h] [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]
+./modprincs.py -h 
+usage: modprincs.py [-h] [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]
 
 Your Text Here
 
