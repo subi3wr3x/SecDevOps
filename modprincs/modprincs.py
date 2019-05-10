@@ -1,4 +1,13 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
+"""modprinc.py
+
+Simply put we act on users in a Kerberos Database and setup some
+guardrails to ensure consistenly and reliable execution.
+
+change cmd as needed to modify principals
+
+"""
 
 import os
 import sys
@@ -46,7 +55,7 @@ class TicketUser:
         except Exception as e:
             logging.error("Query Setup Error:", e)
 
-    def forwarding(self, state):
+    def modprinc(self, state):
         try:
 
             if "on" in state:
@@ -163,7 +172,7 @@ if __name__ == '__main__':
                 if ruser:
                     qresult = ticket.query_user(user)
                     if qresult is None:
-                        ticket.forwarding("off")
+                        ticket.modprinc("off")
                         ticket.query_user(user)
                 else:
                     msg = user + " does not conform - skipping"
