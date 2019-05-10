@@ -55,17 +55,13 @@
           mode: 0755
         with_items:
           - Backup_Primary_SecurID.sh
-          - Backup_Primary_SecurID_QA.sh
           - Backup_cron_wrapper.sh
-          - SendEmail.sh
           - alias_gen
           - check_load.sh
           - check_ntp.sh
           - keyscan.sh
-          - mail.jar
           - prune_backups.sh
-          - setperms.sh
-          - setup_cdrom_patch.sh
+          #Add others as needed
       
       - name: rsaadmin Copy ssh files
         copy:
