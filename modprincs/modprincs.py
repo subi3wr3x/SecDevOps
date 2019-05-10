@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 
-modprinc.py -
+modprincs.py -
 
 Simply put we act on users in a Kerberos Database and setup some
 guardrails to ensure consistenly and reliable execution.
