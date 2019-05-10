@@ -106,7 +106,7 @@ if __name__ == '__main__':
         print(kadmin + " is not-executable - exiting")
         sys.exit(1)
 
-    parser = argparse.ArgumentParser(description='Disable Ticket Forwarding',usage="%(prog)s [-h] [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]") 
+    parser = argparse.ArgumentParser(description='Your Text Here',usage="%(prog)s [-h] [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]") 
     parser.add_argument('--ulist',metavar='\b', required = False, help = '/tmp/users.txt')
     parser.add_argument('--blist',metavar='\b', required = False, help = '/tmp/blacklist.txt')
     args = parser.parse_args()
