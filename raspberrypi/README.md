@@ -2,6 +2,7 @@
 
 #### Usage
 Add a [USB Ethernet Adapter](https://www.amazon.com/gp/product/B00FFJ0RKE/) to the pi and setup the pi w/the included configs
+To test out Monitor Mode and to crack WPA2, try the [PAU05 USB Wifi Adapter](https://www.amazon.com/Panda-300Mbps-Wireless-USB-Adapter/dp/B00EQT0YK2)
 
 #### Expectations
 The PI will sit between your Cable Modem and Wireless Router using a [Linux Ethernet Bridge](http://www.microhowto.info/howto/bridge_traffic_between_two_or_more_ethernet_interfaces_on_linux.html):
