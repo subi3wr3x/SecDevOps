@@ -5,6 +5,10 @@ Add a [USB Ethernet Adapter](https://www.amazon.com/gp/product/B00FFJ0RKE/) to t
 
 (Optional) To test out Monitor Mode cracking WPA2, try the [PAU05 USB Wifi Adapter](https://www.amazon.com/Panda-300Mbps-Wireless-USB-Adapter/dp/B00EQT0YK2)
 
+Edit to your system specifics as needed:
+- etc_dhcpcd.conf
+- etc_network_interfaces
+- etc_wpa_supplicant_wpa_supplicant.conf
 
 
 #### Expectations
