@@ -9,6 +9,7 @@ Edit to your system specifics as needed:
 - etc_dhcpcd.conf
 - etc_network_interfaces
 - etc_wpa_supplicant_wpa_supplicant.conf
+(others are optional)
 
 
 #### Expectations
