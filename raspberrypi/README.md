@@ -3,7 +3,7 @@
 #### Usage
 Add a [USB Ethernet Adapter](https://www.amazon.com/gp/product/B00FFJ0RKE/) to the pi and setup the pi w/the included configs.
 
-(Optional) To test out Monitor Mode and to crack WPA2, try the [PAU05 USB Wifi Adapter](https://www.amazon.com/Panda-300Mbps-Wireless-USB-Adapter/dp/B00EQT0YK2)
+(Optional) To test out Monitor Mode cracking WPA2, try the [PAU05 USB Wifi Adapter](https://www.amazon.com/Panda-300Mbps-Wireless-USB-Adapter/dp/B00EQT0YK2)
 
 
 
