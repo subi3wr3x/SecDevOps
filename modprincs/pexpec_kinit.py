@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+
+"Quick Helper Script to flow through potentially bad auth attempts"
+"Verify what works and what shows up in splunk logs               "
+
 import os
 import sys
 import time
@@ -26,9 +31,8 @@ kinit_args= [
     "-5 -f host/realm"
     "-f user@",
     "test user -f",
+    '\<script\>',
 ]
-
-#'\<script\>',
 
 for each_arg in kinit_args:
     command=str(kinit) + " " +  str(each_arg)
