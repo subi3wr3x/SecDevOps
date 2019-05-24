@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 
 """ Given a list of realm users, modify the allow_forwardable on or off; default is off  """
 """ Uses kadmin.local and proc module from pythn to do so                                """
