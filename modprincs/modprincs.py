@@ -1,19 +1,21 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-"""
 
-modprincs.py -
+""" Given a list of realm users, modify the allow_forwardable on or off; default is off  """
+""" Uses kadmin.local and proc module from pythn to do so                                """
+""" Input from CSV/text file (principal_name@realm)                                      """
+""" Allows blacklist input from CSV/text file (principal_name@realm)                     """
+""" Script will continue on user error for a principal and log it                        """ 
+""" Output(log) contains date REQ#, principal per line, status of execution, error       """
+"""     summary of the execution                                                         """
+""" Checks if root user and if on a master kdc                                           """
 
-Simply put we act on users in a Kerberos Database and setup some
-guardrails to ensure consistenly and reliable execution.
-
-change cmd as needed to modify principals
-
-"""
 
 import os
-import sys
 import re
+import sys
+import time
+import fcntl
+import getpass
+import socket
 import argparse
 import datetime
 import subprocess
@@ -22,168 +24,218 @@ import logging
 
 class TicketUser:
 
-    def __init__(self, logfile, kadmin, errfile, userfile, blklfile, realm):
-        self.logfile = logfile
-        self.errfile = errfile
-        self.logfile = logfile
-        self.userfile = userfile
-        self.blklfile = blklfile
-        self.realm = realm
-        self.kadmin = kadmin
 
-    def query_user(self, user):
+    def __init__(self,logfile,kadmin,errfile,userfile,blklfile):
+        self.logfile   = logfile 
+        self.errfile   = errfile 
+        self.logfile   = logfile
+        self.userfile  = userfile
+        self.blklfile  = blklfile
+        self.kadmin    = kadmin
+
+    def query_user(self,user):
         try:
-            self.user = user
-            command = self.kadmin + " -q \"getprinc " + self.user + "@" + self.realm
-            proch = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                stdin=subprocess.PIPE)
+            self.user = user  
+            command = self.kadmin + " -q \"getprinc \"" + self.user
+            proch = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE, stdin=subprocess.PIPE)
             output, error = proch.communicate()
             if error:
                 logging.error("KADMIN_ERROR:" + str(error))
                 return "KADMIN_ERROR"
             else:
                 output = output.decode("utf-8")
-                msg = "QUERY: " + user + " allow_forwardable attribute is currently "
+                msg="QUERY: " + user + " allow_forwardable attribute is currently "
                 if "DISALLOW_FORWARDABLE" in output:
-                    state = "disabled"
+                    state="disabled"
                     logging.info(msg + state)
                 else:
-                    state = "enabled"
+                    state="enabled"
                     logging.info(msg + state)
         except Exception as e:
-            logging.error("Query Setup Error:", e)
+            logging.error("Query Setup Error:",e)
 
-    def modprinc(self, state):
+    def forwarding(self,state):
         try:
 
             if "on" in state:
-                flag = "+"
+                flag="+"
             elif "off" in state:
-                flag = "-"
-            cmd = self.kadmin + " -q \"modprinc " + flag + \
-                "allow_forwardable " + self.user + "@" + self.realm
-            proch = subprocess.Popen(
-                cmd,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                stdin=subprocess.PIPE)
+                flag="-"
+
+            #TODO: Make prettier. This is cmd nuts.
+            cmd = self.kadmin + " " + "-q" + " " + "\"" + "modprinc" + " " + \
+                flag + "allow_forwardable" + " " + self.user + "\""
+            proch = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE, stdin=subprocess.PIPE)
             output, error = proch.communicate()
             if error:
                 logging.error("KADMIN_ERROR:" + str(error))
             else:
                 output = output.decode("utf-8")
-                if "Principal \"" + self.user + "@" + self.realm + "\" modified" in output:
-                    msg = "ACTION: allow_forwardable flag turned " + state + " OK for " + self.user
+                if "Principal \"" + self.user + "\" modified" in output:
+                    msg="ACTION: allow_forwardable flag turned " + state + " OK for " + self.user
                     logging.info(msg)
                 else:
-                    msg = "ACTION: allow_forwardable flag NOT turned " + state + " OK for " + self.user
+                    msg="ACTION: allow_forwardable flag NOT turned " + state + " OK for " + self.user
                     logging.error(msg)
         except Exception as e:
-            print("Modify Setup Error:", e)
+            print("Modify Setup Error:",e)
+
 
     def OpenUserList(self):
         candidates = []
         try:
-            with open(self.userfile, 'r') as fh:
+            with open(self.userfile,'r') as fh:
                 for user in fh:
                     candidates.append(user.rstrip())
             return candidates
         except Exception as e:
-            print("UserList file problem:", e)
+            print("UserList file problem:",e)
             sys.exit(1)
-
+    
     def OpenBlacklist(self):
         blmembers = {}
         try:
-            with open(self.blklfile, 'r') as fh:
+            with open(self.blklfile,'r') as fh:
                 for user in fh:
                     blmembers[user.rstrip()] = 1
             return blmembers
         except Exception as e:
-            print("BlackList file problem:", e)
+            print("BlackList file problem:",e)
             sys.exit(1)
+
+class ReadyChecks:
+
+
+    def check_if_root():
+        whoami=getpass.getuser()
+        if whoami != 'root':
+            print("This script must be run as root")
+            sys.exit(1)
+        else:
+            return "OK"
+
+    def check_if_on_a_master():
+        masterip     = socket.gethostbyname('master-prod')
+        masteripdev  = socket.gethostbyname('master-dev')
+        myhostip     = socket.gethostbyname(socket.gethostname())
+        masters      = { masterip : 1 , masteripdev : 1 }
+        if myhostip not in masters:
+            print("This script must be run on the master kdc (resolve to 'krbadmin')")
+            sys.exit(1)
+        else:
+            return "OK"
+
+    def check_kadmin_is_ready(kadmin_path):
+        if os.path.exists(kadmin_path):
+            pass
+        else:
+            print(kadmin_path + " does not exist - exiting")
+            sys.exit(1)
+        
+        if os.access(kadmin_path,os.X_OK):
+            pass
+            return "OK"
+        else:
+            print(kadmin_path + " is not-executable - exiting")
+            sys.exit(1)
+
+    def am_i_running(pid_file):
+        if os.path.exists(pid_file):
+            print(pid_file + " exits - exiting")
+            sys.exit(0)
+        else:
+            try:
+                with open(pid_file,'w') as fh:
+                    fh.write(str(os.getpid()))
+                    return "OK"
+            except Exception as ex:
+                print("Pid Error: " + str(ex))
 
 
 if __name__ == '__main__':
 
-    kadmin = "/usr/sbin/kadmin.local"
-    if os.path.exists(kadmin):
-        pass
-    else:
-        print(kadmin + " does not exist - exiting")
-        sys.exit(1)
-
-    if os.access(kadmin, os.X_OK):
-        pass
-    else:
-        print(kadmin + " is not-executable - exiting")
-        sys.exit(1)
-
-    parser = argparse.ArgumentParser(
-        description='Your Text Here',
-        usage="%(prog)s [-h] [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]")
-    parser.add_argument(
-        '--ulist',
-        metavar='\b',
-        required=False,
-        help='/tmp/users.txt')
-    parser.add_argument(
-        '--blist',
-        metavar='\b',
-        required=False,
-        help='/tmp/blacklist.txt')
-    args = parser.parse_args()
-
     try:
-        appname = os.path.basename(__file__).split('.')[0]
-        date = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-        realm = "my.realm"
-        blklfile = args.blist
+        realm    = "yourrealm"
+        appname  = os.path.basename(__file__).split('.')[0]
+        pid_file = '/tmp/' + appname + '.pid'
+        kadmin   = "/usr/sbin/kadmin.local"
+        date     = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+
+        statusR0 = ReadyChecks.am_i_running(pid_file)
+        statusR1 = ReadyChecks.check_if_root()
+        statusR2 = ReadyChecks.check_if_on_a_master()
+        statusR3 = ReadyChecks.check_kadmin_is_ready(kadmin)
+        #print (statusR0, statusR1, statusR2,  statusR3)
+        
+        parser = argparse.ArgumentParser(description='Disable Ticket Forwarding',\
+            usage="%(prog)s [-h] --req 600XXXXXX [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]") 
+        parser.add_argument(   '--req',metavar='\b' ,required = True,  help =  '600XXXXXX')
+        parser.add_argument( '--ulist',metavar='\b', required = False, help = '/tmp/users.txt')
+        parser.add_argument( '--blist',metavar='\b', required = False, help = '/tmp/blacklist.txt')
+        parser.add_argument('--action',metavar='\b', required = False, help = '[on|off]')
+        args = parser.parse_args()
+
+        action   = "off"
+        if args.action is not None:
+            action   = args.action 
+            if action not in ['off','on']:
+                print("Must specify --action off or  --action on")
+                sys.exit(1)
+
+        req     = args.req
+        if len(req) < 8 or not req.startswith('6'):
+            print("REQ should be at least 8 numbers and start with a 6")
+            sys.exit(1)
+
+        blklfile = args.blist 
         if args.blist is None:
             blklfile = "/tmp/black_list.txt"
+
         userfile = args.ulist
         if args.ulist is None:
             userfile = "/tmp/users.txt"
-        logfile = "/tmp/" + appname + "_log_" + str(date) + ".log"
-        errfile = "/tmp/" + appname + "_errfile_" + str(date) + ".txt"
+
+        logfile  = "/tmp/" + appname + "_log_"     + str(date) + ".log"
+        errfile  = "/tmp/" + appname + "_errfile_" + str(date) + ".txt"
         loglevel = "INFO"
-        logging.basicConfig(
-            filename=logfile,
-            level=loglevel,
-            format='%(levelname)s %(asctime)s %(module)s %(process)d %(message)s')
-        ticket = TicketUser(
-            logfile,
-            kadmin,
-            errfile,
-            userfile,
-            blklfile,
-            realm)
-        myuserlist = ticket.OpenUserList()
+        logging.basicConfig(filename=logfile, level=loglevel,format = \
+            '%(levelname)s %(asctime)s %(module)s %(process)d %(message)s')
+
+        ticket  = TicketUser(logfile,kadmin,errfile,userfile,blklfile)
+        myuserlist  = ticket.OpenUserList()
         myblacklist = ticket.OpenBlacklist()
 
-        logging.info("Execution Starting for TASK:")
+        exec_msg = "Execution Starting for REQ:" + req + " - Turning allow_forwardable flag " + action
+        print(exec_msg)
+        logging.info(exec_msg)
+
         for user in myuserlist:
-            print("Processing user::" + user)
+            print("Processing user:" + user)
             if user not in myblacklist:
-                ruser = re.match(r'[\w+\.?]+$', user)
-                if ruser:
+                ruser = re.match(r'[\w+\.?]+@' + re.escape(realm) +r'$',user)
+                if ruser.group(0):
                     qresult = ticket.query_user(user)
                     if qresult is None:
-                        ticket.modprinc("off")
+                        ticket.forwarding(action)
                         ticket.query_user(user)
+                        time.sleep(1)
+                    else:
+                        pass #Logging handled in the class
                 else:
-                    msg = user + " does not conform - skipping"
+                    msg=user + " does not conform - skipping"
                     logging.error("PRE_EXEC:CHARSET_ERROR:" + msg)
                     pass
             else:
-                msg = user + " in blacklist - skipping"
+                msg=user + " in blacklist - skipping"
                 logging.error("PRE_EXEC:BLACKLIST:" + msg)
                 pass
+        logging.info("Execution Completed for REQ:" + req)
     except Exception as ex:
         print("Main Setup Error:" + str(ex))
-    logging.info("Execution Completed for TASK:")
+    finally:
+        try:
+            os.remove(pid_file)
+        except Exception as ex:
+            print("Cannot remove " + pid_file + ":" +  str(ex))
