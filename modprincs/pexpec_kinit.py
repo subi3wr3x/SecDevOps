@@ -2,6 +2,8 @@
 
 "Quick Helper Script to flow through potentially bad auth attempts"
 "Verify what works and what shows up in splunk logs               "
+"Not need to modprinc.py by helpful post implemenation-wise       "
+
 
 import os
 import sys
