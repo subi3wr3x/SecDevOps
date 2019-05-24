@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-"Quick Helper Script to flow through potentially bad auth attempts            "
-"Verify what works and what shows up in splunk logs                           "
-"Not needed for user w/modprinc.py but helpful post implemenation-wise        "
+"    Quick Helper Script to flow through potentially bad auth attempts        "
+"    Verify what works and what shows up in splunk logs                       "
+"    Not needed for user w/modprinc.py but helpful post implemenation-wise    "
 
 
 import os
