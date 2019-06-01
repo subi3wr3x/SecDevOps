@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
-""" Given a list of is1.users, modify the allow_forwardable flag on or off; default    """
-"""     action is 'off'.                                                                   """
-""" Uses kadmin.local and proc module from pythn to do so                              """
-""" Input from CSV/text file (principal_name@yourrealm)                               """
-""" Allows blacklist input from CSV/text file (principal_name@yourrealm)              """
-""" Script will continue on user error for a principal and log it                      """
-""" Output(log) contains date and REQ, principal per line, status of execution, error  """
-"""     summary of the execution                                                       """
-""" Checks if root user and if on a master kdc                                         """
+"""  Given a list of is1.users, modify the allow_forwardable flag on or off; default    """
+"""     action is 'off'.                                                                """
+"""  Uses kadmin.local and proc module from pythn to do so                              """
+"""  Input from CSV/text file (principal_name@yourrealm)                                """
+"""  Allows blacklist input from CSV/text file (principal_name@yourrealm)               """
+"""  Script will continue on user error for a principal and log it                      """
+"""  Output(log) contains date and REQ, principal per line, status of execution, error  """
+"""     summary of the execution                                                        """
+"""  Checks if root user and if on a master kdc                                         """
 
 import os
 import re
