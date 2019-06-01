@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
-""" Given a list of realm users, modify the allow_forwardable on or off; default is off  """
-""" Uses kadmin.local and proc module from pythn to do so                                """
-""" Input from CSV/text file (principal_name@realm)                                      """
-""" Allows blacklist input from CSV/text file (principal_name@realm)                     """
-""" Script will continue on user error for a principal and log it                        """ 
-""" Output(log) contains date REQ#, principal per line, status of execution, error       """
-"""     summary of the execution                                                         """
-""" Checks if root user and if on a master kdc                                           """
-
+""" Given a list of is1.users, modify the allow_forwardable flag on or off; default    """
+"""     action is 'off'.                                                                   """
+""" Uses kadmin.local and proc module from pythn to do so                              """
+""" Input from CSV/text file (principal_name@yourrealm)                               """
+""" Allows blacklist input from CSV/text file (principal_name@yourrealm)              """
+""" Script will continue on user error for a principal and log it                      """
+""" Output(log) contains date and REQ, principal per line, status of execution, error  """
+"""     summary of the execution                                                       """
+""" Checks if root user and if on a master kdc                                         """
 
 import os
 import re
@@ -27,8 +27,8 @@ class TicketUser:
 
 
     def __init__(self,logfile,kadmin,errfile,userfile,blklfile):
-        self.logfile   = logfile 
-        self.errfile   = errfile 
+        self.logfile   = logfile
+        self.errfile   = errfile
         self.logfile   = logfile
         self.userfile  = userfile
         self.blklfile  = blklfile
@@ -36,7 +36,7 @@ class TicketUser:
 
     def query_user(self,user):
         try:
-            self.user = user  
+            self.user = user
             command = self.kadmin + " -q \"getprinc \"" + self.user
             proch = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
             stderr=subprocess.PIPE, stdin=subprocess.PIPE)
@@ -64,7 +64,7 @@ class TicketUser:
             elif "off" in state:
                 flag="-"
 
-            #TODO: Make prettier. This is cmd nuts.
+            #TODO: Make prettier. 
             cmd = self.kadmin + " " + "-q" + " " + "\"" + "modprinc" + " " + \
                 flag + "allow_forwardable" + " " + self.user + "\""
             proch = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
@@ -94,7 +94,7 @@ class TicketUser:
         except Exception as e:
             print("UserList file problem:",e)
             sys.exit(1)
-    
+
     def OpenBlacklist(self):
         blmembers = {}
         try:
@@ -118,12 +118,12 @@ class ReadyChecks:
             return "OK"
 
     def check_if_on_a_master():
-        masterip     = socket.gethostbyname('master-prod')
+        masterip     = socket.gethostbyname('master')
         masteripdev  = socket.gethostbyname('master-dev')
         myhostip     = socket.gethostbyname(socket.gethostname())
         masters      = { masterip : 1 , masteripdev : 1 }
         if myhostip not in masters:
-            print("This script must be run on the master kdc (resolve to 'krbadmin')")
+            print("This script must be run on the master kdc (resolve to 'krb-master')")
             sys.exit(1)
         else:
             return "OK"
@@ -134,7 +134,7 @@ class ReadyChecks:
         else:
             print(kadmin_path + " does not exist - exiting")
             sys.exit(1)
-        
+
         if os.access(kadmin_path,os.X_OK):
             pass
             return "OK"
@@ -154,6 +154,30 @@ class ReadyChecks:
             except Exception as ex:
                 print("Pid Error: " + str(ex))
 
+    def check_if_backup_running(secs):
+        command      = "backup_script.sh"
+        ps_command   = "ps -ef |" + "grep -iw " + command + " | grep -iv grep"
+        proch = subprocess.Popen(ps_command, shell=True, stdout=subprocess.PIPE, \
+            stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+        try:
+            output, error = proch.communicate()
+            #If we can't determine if backups are running or not, exit
+            if error:
+                logging.critical("Command error:" +  str(error) + "exiting")
+                print("Command error:" +  str(error) + "exiting")
+                sys.exit(1)
+            if len(output) < 1:
+                #logging.info(command + " not running")
+                return True
+            else:
+                print(command + " running - sleeping for " + str(secs) + " seconds")
+                logging.warning(command + " running - sleeping for " + str(secs) + " seconds")
+                time.sleep(secs)
+                ReadyChecks.check_if_backup_running(int(secs))
+        except Exception as e:
+            print("OS Error running " + ps_command + ":" +  str(e))
+            sys.exit(1)
+
 
 if __name__ == '__main__':
 
@@ -169,10 +193,10 @@ if __name__ == '__main__':
         statusR2 = ReadyChecks.check_if_on_a_master()
         statusR3 = ReadyChecks.check_kadmin_is_ready(kadmin)
         #print (statusR0, statusR1, statusR2,  statusR3)
-        
+
         parser = argparse.ArgumentParser(description='Disable Ticket Forwarding',\
-            usage="%(prog)s [-h] --req 600XXXXXX [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]") 
-        parser.add_argument(   '--req',metavar='\b' ,required = True,  help =  '600XXXXXX')
+            usage="%(prog)s [-h] --REQ 600XXXXXX [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]")
+        parser.add_argument(   '--REQ',metavar='\b' ,required = True,  help =  '600XXXXXX')
         parser.add_argument( '--ulist',metavar='\b', required = False, help = '/tmp/users.txt')
         parser.add_argument( '--blist',metavar='\b', required = False, help = '/tmp/blacklist.txt')
         parser.add_argument('--action',metavar='\b', required = False, help = '[on|off]')
@@ -180,17 +204,17 @@ if __name__ == '__main__':
 
         action   = "off"
         if args.action is not None:
-            action   = args.action 
+            action   = args.action
             if action not in ['off','on']:
                 print("Must specify --action off or  --action on")
                 sys.exit(1)
 
-        req     = args.req
-        if len(req) < 8 or not req.startswith('6'):
+        REQ     = args.REQ
+        if len(REQ) < 8 or not REQ.startswith('6'):
             print("REQ should be at least 8 numbers and start with a 6")
             sys.exit(1)
 
-        blklfile = args.blist 
+        blklfile = args.blist
         if args.blist is None:
             blklfile = "/tmp/black_list.txt"
 
@@ -208,31 +232,33 @@ if __name__ == '__main__':
         myuserlist  = ticket.OpenUserList()
         myblacklist = ticket.OpenBlacklist()
 
-        exec_msg = "Execution Starting for REQ:" + req + " - Turning allow_forwardable flag " + action
+        exec_msg = "Execution Starting for REQ:" + REQ + " - Turning allow_forwardable flag " + action
         print(exec_msg)
         logging.info(exec_msg)
 
         for user in myuserlist:
-            print("Processing user:" + user)
-            if user not in myblacklist:
-                ruser = re.match(r'[\w+\.?]+@' + re.escape(realm) +r'$',user)
-                if ruser.group(0):
-                    qresult = ticket.query_user(user)
-                    if qresult is None:
-                        ticket.forwarding(action)
-                        ticket.query_user(user)
-                        time.sleep(1)
+            if ReadyChecks.check_if_backup_running(240):
+                print(user)
+                if user not in myblacklist:
+                    ruser = re.match(r'[\w+\.?]+@' + re.escape(realm) +r'$',user)
+                    if ruser.group(0):
+                        print("Processing user:" + user)
+                        qresult = ticket.query_user(user)
+                        if qresult is None:
+                            ticket.forwarding(action)
+                            ticket.query_user(user)
+                            time.sleep(1)
+                        else:
+                            pass #Logging handled in the class
                     else:
-                        pass #Logging handled in the class
+                        msg=user + " does not conform - skipping"
+                        logging.error("PRE_EXEC:CHARSET_ERROR:" + msg)
+                        pass
                 else:
-                    msg=user + " does not conform - skipping"
-                    logging.error("PRE_EXEC:CHARSET_ERROR:" + msg)
+                    msg=user + " in blacklist - skipping"
+                    logging.error("PRE_EXEC:BLACKLIST:" + msg)
                     pass
-            else:
-                msg=user + " in blacklist - skipping"
-                logging.error("PRE_EXEC:BLACKLIST:" + msg)
-                pass
-        logging.info("Execution Completed for REQ:" + req)
+        logging.info("Execution Completed for REQ:" + REQ)
     except Exception as ex:
         print("Main Setup Error:" + str(ex))
     finally:
