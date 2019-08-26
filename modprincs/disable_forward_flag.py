@@ -1,4 +1,4 @@
-#!/ms/dist/python/PROJ/core/3.7.1-1/exec/bin/python3
+#!/usr/bin/python3.7
 
 """ Given a list of is1.users, modify the allow_forwardable flag on or off; default    """
 """     action is 'off'.                                                               """

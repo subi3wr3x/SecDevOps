@@ -1,4 +1,4 @@
-#!/ms/dist/python/PROJ/core/3.7.1-1/exec/bin/python3
+#!/usr/bin/python3.7
 
 """ Given a list of proids, modify the enc type lists to rm DES                        """
 """     and allow an action to restore it                                              """
