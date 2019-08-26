@@ -1,10 +1,10 @@
 #!/usr/bin/python3.7
 
-""" Given a list of is1.users, modify the allow_forwardable flag on or off; default    """
+""" Given a list of user princs, modify the allow_forwardable flag on or off; default  """
 """     action is 'off'.                                                               """
 """ Uses kadmin.local and proc module from pythn to do so                              """
-""" Input from CSV/text file (principal_name@is1.morgan)                               """
-""" Allows blacklist input from CSV/text file (principal_name@is1.morgan)              """
+""" Input from CSV/text file (principal_name@realm)                                    """
+""" Allows blacklist input from CSV/text file (principal_name@realm)                   """
 """ Script will continue on user error for a principal and log it                      """
 """ Output(log) contains date and REQ, principal per line, status of execution, error  """
 """     summary of the execution                                                       """

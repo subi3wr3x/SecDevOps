@@ -1,10 +1,10 @@
 #!/usr/bin/python3.6
 
-""" Given a list of proids, modify the enc type lists to rm DES                        """
+""" Given a list of svn princs, modify the enc type lists to rm DES                    """
 """     and allow an action to restore it                                              """
 """ Use  kadmin.local and proc module from python to do so                             """
-""" Input from CSV/text file (principal_name@is1.morgan)                               """
-""" Allows blacklist input from CSV/text file (principal_name@is1.morgan)              """
+""" Input from CSV/text file (principal_name@realm)                                    """
+""" Allows blacklist input from CSV/text file (principal_name@realm)                   """
 """ Script will continue on user error for a principal and log it                      """
 """ Output(log) contains date and REQ, principal per line, status of execution, error  """
 """     summary of the execution                                                       """
