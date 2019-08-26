@@ -277,7 +277,7 @@ if __name__ == '__main__':
                 sys.exit(1)
 
         REQ     = args.REQ
-        if len(REQ) < 8 
+        if len(REQ) < 8: 
             print("REQ should be at least 8 numbers")
             sys.exit(1)
 

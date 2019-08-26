@@ -1,4 +1,4 @@
-#!/usr/bin/python3.7
+#!/usr/bin/python3.6
 
 """ Given a list of proids, modify the enc type lists to rm DES                        """
 """     and allow an action to restore it                                              """
@@ -271,7 +271,7 @@ if __name__ == '__main__':
 
         #Ensure the REQ number is well formed 
         REQ     = args.REW
-        if len(REQ) < 8 
+        if len(REQ) < 8: 
             print("REQ should be at least 8 numbers and start with a 6")
             sys.exit(1)
 
