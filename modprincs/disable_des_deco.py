@@ -14,7 +14,6 @@ import os
 import re
 import sys
 import time
-import fcntl
 import getpass
 import socket
 import argparse
@@ -138,11 +137,17 @@ class ReadyChecks:
 
     def check_if_on_a_master():
         """ Return  OK if  we can are running on a master, else exit  """
-        masterip     = socket.gethostbyname('krbadmin.ms.com')
-        masteripdev  = socket.gethostbyname('itsikdcdev01.devin1.ms.com')
-        myhostip     = socket.gethostbyname(socket.gethostname())
-        masters      = { masterip : 1 , masteripdev : 1 }
-        if myhostip not in masters:
+        masters = ['master','masterdev']
+        mastersok ={}
+        for eachkdc in masters:
+            try:
+                mymaster  = socket.gethostbyname(eachkdc)
+            except Exception as e:
+                print ("Cannot resolve " + eachkdc + str(e))
+                sys.exit(1)
+            mastersok[mymaster] = 1
+        myhostip = socket.gethostbyname(socket.gethostname())
+        if myhostip not in mastersok:
             print("This script must be run on the master kdc (resolve to 'krbadmin')")
             sys.exit(1)
         else:

@@ -14,7 +14,6 @@ import os
 import re
 import sys
 import time
-import fcntl
 import getpass
 import socket
 import argparse
