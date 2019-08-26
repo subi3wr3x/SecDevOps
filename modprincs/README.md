@@ -1,10 +1,11 @@
 ## Why
-- From time to time one needs to do maintenance on users in the Kerberos DB.
+- From time to time one needs to do maintenance on principals in the Kerberos DB.
+- Here we can remove flags from users or modify their encrpytion types in bulk.
 - Do it consistently :)
 
 ## Usage
 ```
-./modprincs.py -h 
+./y -h 
 usage: modprincs.py [-h] [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]
 
 Your Text Here
