@@ -5,13 +5,16 @@
 
 ## Usage
 ```
-./y -h 
-usage: modprincs.py [-h] [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]
-
-Your Text Here
+root@box2:~# ./krb5_modify.py -h
+usage: krb5_modify.py [-h] --tkt XXXXXX [--ulist /tmp/users.txt] [--blist /tmp/blacklist.txt]
 
 optional arguments:
-  -h, --help  show this help message and exit
-  --ulist   /tmp/users.txt
-  --blist   /tmp/blacklist.txt
+  -h, --help          show this help message and exit
+  --tkt             XXXXXX
+  --project         [desdeco|disfwd]
+  --blist           /tmp/blacklist.txt
+  --ulist           /tmp/users.txt
+  --disfwd_action   [disable|restore]
+  --disfwd_mode     [remote|local]
+  --desdeco_action  [strengthen|restore]
 ```
