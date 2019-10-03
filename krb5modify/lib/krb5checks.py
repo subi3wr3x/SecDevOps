@@ -86,7 +86,8 @@ class Krb5ReadyChecks:
                 msg=user + " - " + command + " running - sleeping for " + str(secs) + " seconds - count " + str(count)
                 logging.warning(msg)
                 print(msg)
-                time.sleep(secs)
+                time.sleep(1)
+                #time.sleep(secs)
                 count+=1
                 return Krb5ReadyChecks.check_if_backup_running(secs,count,user)
         except Exception as e:
