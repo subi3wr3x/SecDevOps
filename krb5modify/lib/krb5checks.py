@@ -76,12 +76,8 @@ class Krb5ReadyChecks:
                 print(msg)
                 sys.exit(1)
             if len(output) < 1:
-                #TBD: make this possible debugging prettier
-                #msg=user + " - " + command + " not running - count " + str(count)
-                #logging.info(msg)
-                #print(msg)
                 if count > 1:
-                    msg="Backup not running after - " + str(count) + " tries " + str(user) + " to be processed next"
+                    msg=f"Backup not running after {count} tries - {user}  to be processed next"
                     logging.info(msg)
                     print(msg)
                     return True
@@ -92,7 +88,7 @@ class Krb5ReadyChecks:
                 print(msg)
                 time.sleep(secs)
                 count+=1
-                return ReadyChecks.check_if_backup_running(secs,count,user)
+                return Krb5ReadyChecks.check_if_backup_running(secs,count,user)
         except Exception as e:
             print("OS Error running " + ps_command + ":" +  str(e))
             sys.exit(1)
