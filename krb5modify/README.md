@@ -51,8 +51,8 @@ Processing user:user1@JOHNO.COM
 Processing user:user2@JOHNO.COM
 ```
 
-``` 
 ## Sample Log
+
 ```
 root@box2:~# cat /tmp/krb5_modify_log_20191003004057.log
 INFO 2019-10-03 00:40:57,468 krb5_modify 28848 Execution Starting for TKT:XXXXXXXXXXX - disfwd:disable local
