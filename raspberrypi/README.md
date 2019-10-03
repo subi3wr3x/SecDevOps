@@ -1,6 +1,5 @@
-![Ras Pi](pi.png)
-
 #### Pi 3 B+ Config for use as a Network Tap 
+![Ras Pi](pi.png)
 
 #### Usage
 Add a [USB Ethernet Adapter](https://www.amazon.com/gp/product/B00FFJ0RKE/) to the pi and setup the pi w/the included configs.
