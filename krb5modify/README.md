@@ -1,3 +1,7 @@
+
+![Kerberos](https://web.mit.edu/kerberos/images/dog-ring.jpg)
+
+
 ## What and Why
 - From time to time one needs to do maintenance on principals in the Kerberos DB.
 - Here we can remove flags from users or modify their encrpytion types in bulk.
@@ -31,6 +35,21 @@ Processing user:user99@JOHNO.COM
 Processing user:user100@JOHNO.COM
 Execution Completed for TKT: XXXXXXXXXXX
 Summary ==> Success: 79, Errors: 0,Skipped-in-Error: 0,Skipped-Non-conform: 0,Skipped-Blacklist: 21,Is-Enabled: 79,Total: 100
+```
+
+## Sample Waiting for Backup
+```
+root@box2:~/gitrepos/SecDevOps/krb5modify# ./krb5_modify.py  --tkt  XXXXXXXXXXX --ulist /tmp/users.txt --blist /tmp/blacklist.txt --project  disfwd --disfwd_action disable --disfwd_mode local 
+Execution Starting for TKT:XXXXXXXXXXX - disfwd:disable local
+Processing user:user1@JOHNO.COM
+user1@JOHNO.COM - backup_kdb5.sh running - sleeping for 240 seconds - count 1
+user1@JOHNO.COM - backup_kdb5.sh running - sleeping for 240 seconds - count 2
+user1@JOHNO.COM - backup_kdb5.sh running - sleeping for 240 seconds - count 3
+user1@JOHNO.COM - backup_kdb5.sh running - sleeping for 240 seconds - count 4
+Backup not running after 5 tries - user1@JOHNO.COM  to be processed next
+Processing user:user1@JOHNO.COM
+Processing user:user2@JOHNO.COM
+```
 
 ``` 
 ## Sample Log
