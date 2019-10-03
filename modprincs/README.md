@@ -19,6 +19,19 @@ optional arguments:
   --desdeco_action  [strengthen|restore]
 ```
 
+## Sample Output
+```
+root@box2:~# ./krb5_modify.py  --tkt  XXXXXXXXXXX --ulist /tmp/users.txt --blist /tmp/blacklist.txt --project  disfwd --disfwd_action disable --disfwd_mode local
+Execution Starting for TKT:XXXXXXXXXXX - disfwd:disable local
+Processing user:user1@JOHNO.COM
+Processing user:user2@JOHNO.COM
+(snip for length)
+Processing user:user99@JOHNO.COM
+Processing user:user100@JOHNO.COM
+Execution Completed for TKT: XXXXXXXXXXX
+Summary ==> Success: 79, Errors: 0,Skipped-in-Error: 0,Skipped-Non-conform: 0,Skipped-Blacklist: 21,Is-Enabled: 79,Total: 100
+
+``` 
 ## Sample Log
 ```
 root@box2:~# cat /tmp/krb5_modify_log_20191003004057.log
