@@ -3,6 +3,7 @@
 - Here we can remove flags from users or modify their encrpytion types in bulk.
 - Bake in risk reduction by pausing if a back up is running.
 - Do it consistently :)
+
 ![Kerberos](https://web.mit.edu/kerberos/images/dog-ring.jpg)
 
 ## Usage
