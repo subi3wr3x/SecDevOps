@@ -1,6 +1,7 @@
-## Why
+## What and Why
 - From time to time one needs to do maintenance on principals in the Kerberos DB.
 - Here we can remove flags from users or modify their encrpytion types in bulk.
+- Bake in risk reduction by pausing if a back up is running.
 - Do it consistently :)
 
 ## Usage
